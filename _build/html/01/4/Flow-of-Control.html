@@ -1,0 +1,563 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flow of Control &#8212; Introduction to Data Science and Computer Science</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Iteration, The True Power Of Programming" href="../5/Looping-and-Lists.html" />
+    <link rel="prev" title="Some Libraries" href="../3/Libraries.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">Introduction to Data Science and Computer Science</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../intro.html">
+   Welcome
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter-1-Introduction.html">
+   Chapter 1 Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../1/Basics.html">
+   Computer Science Basics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../2/Variables-and-Types.html">
+   Variables and Types
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../3/Libraries.html">
+   Some Libraries
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Flow of Control
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../5/Looping-and-Lists.html">
+   Iteration, The True Power Of Programming
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/01/4/Flow-of-Control.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/01/4/Flow-of-Control.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   Flow Of Control
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="flow-of-control">
+<h1>Flow of Control<a class="headerlink" href="#flow-of-control" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Flow of control</p>
+<ul>
+<li><p>indenting in Python</p></li>
+<li><p>if/elif/else</p></li>
+<li><p>fizzbuzz</p></li>
+<li><p>evens and odds</p></li>
+</ul>
+</li>
+</ul>
+<div class="section" id="id1">
+<h2>Flow Of Control<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>Now that we’ve looked at libraries and basic python types, it’s time to start learning the power of computer science!  Basically everything we’ve done up until this point is just using a programming language as a <em>very</em> fancy calculator, that is automating mathematics.</p>
+<p>But now we’ll explore the first thing we can’t <em>really</em> do with a calculator - flow of control. Flow of control centers around one basic notion - that if we can tell whether or not something is True, then we can draw conclusions from the truth of that statement.</p>
+<p>Let’s look at an example:</p>
+<p>Suppose you want to make sure, that no matter what random number you pick, it’s always even.  How might you ensure that?</p>
+<p>Well, we can observe that all odd numbers are of the form:</p>
+<div class="math notranslate nohighlight">
+\[ 2k + 1 \text{ s.t. } k \in \mathbb{N} \]</div>
+<p>If you aren’t used to the above notation, the <span class="math notranslate nohighlight">\( \in \)</span> stands for ‘in’ and the s.t. stands for ‘such that’.</p>
+<p>So, knowing that all odd numbers are just an even number <span class="math notranslate nohighlight">\(+1\)</span>, we can simply add or subtract <code class="docutils literal notranslate"><span class="pre">1</span></code> to get another even number.</p>
+<p>There is one more piece of syntax before we can create our code - the modulo operator: <code class="docutils literal notranslate"><span class="pre">%</span></code>.</p>
+<p>The modulo operator gets the remainder from integer division instead of the quotient.  The way this works is by observing this fact:</p>
+<div class="math notranslate nohighlight">
+\[m = aq + r \text{ s.t. } m,a,q,r \in \mathbb{N}\]</div>
+<p>That is - for any numbers, m and a such that:</p>
+<p><span class="math notranslate nohighlight">\(m\)</span> is divided by <span class="math notranslate nohighlight">\(a\)</span> we get the above formula.</p>
+<p>Let’s look at some examples to verify this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="mi">17</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">12</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Quotient of </span><span class="si">{</span><span class="n">m</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2"> is&quot;</span><span class="p">,</span> <span class="n">m</span><span class="o">//</span><span class="n">a</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Remainder of </span><span class="si">{</span><span class="n">m</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2"> is&quot;</span><span class="p">,</span> <span class="n">m</span> <span class="o">%</span> <span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Quotient of 17/12 is 1
+Remainder of 17/12 is 5
+</pre></div>
+</div>
+</div>
+</div>
+<p>What this says is:</p>
+<div class="math notranslate nohighlight">
+\[ 17 = (12*1) + 5 \]</div>
+<p>That seems right.  Will this always work?!  Yes!  Let’s pick some random numbers:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+
+<span class="n">m</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">101</span><span class="p">,</span> <span class="mi">1000000</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Quotient of </span><span class="si">{</span><span class="n">m</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2"> is&quot;</span><span class="p">,</span> <span class="n">m</span><span class="o">//</span><span class="n">a</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Remainder of </span><span class="si">{</span><span class="n">m</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2"> is&quot;</span><span class="p">,</span> <span class="n">m</span> <span class="o">%</span> <span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Quotient of 110895/75 is 1478
+Remainder of 110895/75 is 45
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can verify this works yourself by running the above code a bunch of times (it will always work).</p>
+<p>Now we are ready for our flow of control example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+
+<span class="n">random_number</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000000</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">random_number</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="n">random_number</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="n">random_number</span>    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>762700
+</pre></div>
+</div>
+</div>
+</div>
+<p>As you can see, we always get an even number.  You can verify this too by running the above code as many times as you want.  It will always produce an even number.</p>
+<p>Now let’s go over the flow of control syntax in a bit more detail:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">[</span><span class="n">STATEMENT</span> <span class="n">THAT</span> <span class="n">RESOLVES</span> <span class="n">TO</span> <span class="n">TRUE</span> <span class="n">OR</span> <span class="n">FALSE</span><span class="p">]:</span>
+    <span class="p">[</span><span class="n">SOME</span> <span class="n">CODE</span> <span class="n">GOES</span> <span class="n">HERE</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>First let’s talk about the statement that resolves to true or false - this is just a variable of type boolean, as we’ve seen in previous sections.  That is, any statement that goes into the <code class="docutils literal notranslate"><span class="pre">if</span></code> statement just needs to resolve to one of the binary values <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+<p>Notice there is <em>some</em> new syntax here:</p>
+<p>First, the <code class="docutils literal notranslate"><span class="pre">if</span></code> keyword - we always state any flow of control with an <code class="docutils literal notranslate"><span class="pre">if</span></code>, specifically this is saying “if this statement is <code class="docutils literal notranslate"><span class="pre">True</span></code> then do the following.</p>
+<p>Next we have a <code class="docutils literal notranslate"><span class="pre">:</span></code> at the end of the boolean statement.  This indicates that we are about to go into what’s called a new scope - that’s code that may not <em>always</em> run in every version of the program.  It’s code that might only run sometimes.</p>
+<p>Finally, our code is indented to indicate a change in scope.  This means it goes on a new line and is either tabbed in or whitespaced in.</p>
+<p>This final point can feel very conceptual, but once you get used to reading code this way, it appears elegant and useful.</p>
+<p>Intuitively the way I think of scoping rules is as the same as a to do list.  Let’s look at an example for context:</p>
+<p>Things I need to do today:</p>
+<ul class="simple">
+<li><p>brush my teeth</p></li>
+<li><p>study a lot</p></li>
+<li><p>learn some statistics</p></li>
+<li><p>eat breakfast</p></li>
+<li><p>eat lunch</p></li>
+<li><p>eat dinner</p></li>
+</ul>
+<p>As you can see the above list, the individual items are <em>tabbed</em> in, so each item is implied to be within the <em>scope</em> of the list, things I need to do today.</p>
+<p>Now let’s talk about some consequences of changing scope - optionally created variables.  Best to look at an example for this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">7</span>
+
+<span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">7</span><span class="p">:</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="mi">9</span>
+    <span class="n">x</span> <span class="o">+=</span> <span class="n">y</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="mi">29</span>
+    <span class="n">x</span> <span class="o">+=</span> <span class="n">z</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>16
+</pre></div>
+</div>
+</div>
+</div>
+<p>The above code introduces two new pieces of syntax - the first being the <code class="docutils literal notranslate"><span class="pre">else</span></code> statement, which works with the ‘if’ statement above - specifically the joint statement is:</p>
+<p>if x equals 7, create a variable y and add it to x, otherwise, create a variable z and it to x.</p>
+<p>We can sort of think of the else as the opposite of the if statement.  So if x equals anything <em>but</em> 7 then do that.</p>
+<p>The next thing that’s new is variables created in <em>local scope</em>.  So if x equals 7, then we create y, <em>but</em> if it doesn’t then y never get’s created.  Likewise, if x equals 7, then z is <em>never</em> created.  Let’s verify this by trying to add <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">+</span> <span class="pre">z</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">+</span> <span class="n">z</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">3</span><span class="o">-</span><span class="mi">2</span><span class="n">d5f8479e2db</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">x</span> <span class="o">+</span> <span class="n">z</span>
+
+<span class="ne">NameError</span>: name &#39;z&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<p>As you can see, the scope for z was never entered, so the variable is number created.  That’s why we get a <code class="docutils literal notranslate"><span class="pre">NameError</span></code>.  Before we move onto another topic there was one last piece of syntax we need to cover:</p>
+<p><code class="docutils literal notranslate"><span class="pre">elif</span></code></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">elif</span></code> statement stands for else if, and executes only if the <code class="docutils literal notranslate"><span class="pre">if</span></code> statement is false.  Additionally the boolean in the <code class="docutils literal notranslate"><span class="pre">elif</span></code> statement needs to be true.  Let’s look at an example using <code class="docutils literal notranslate"><span class="pre">elif</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">14</span>
+
+<span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">12</span><span class="p">:</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">x</span> <span class="o">+=</span> <span class="n">w</span>
+<span class="k">elif</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">14</span><span class="p">:</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">x</span> <span class="o">-=</span> <span class="n">q</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12
+</pre></div>
+</div>
+</div>
+</div>
+<p>As you can see, the elif statement executes because the if statement was false.  But what happens if both statements are true?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">string</span> <span class="o">=</span> <span class="s2">&quot;Hello there friends!&quot;</span>
+
+<span class="k">if</span> <span class="s2">&quot;e&quot;</span> <span class="ow">in</span> <span class="n">string</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;there are vowels here!&quot;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="s2">&quot;!&quot;</span> <span class="ow">in</span> <span class="n">string</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;this string has no alphabet characters&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;no e or ! here&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>there are vowels here!
+</pre></div>
+</div>
+</div>
+</div>
+<p>As you can see, because the first condition was true, it executed, this happened <em>even though</em> the condition in the <code class="docutils literal notranslate"><span class="pre">elif</span></code> was true.</p>
+<p>Also note, we introduced an <code class="docutils literal notranslate"><span class="pre">else</span></code> condition here - in this case, the code in the <code class="docutils literal notranslate"><span class="pre">else</span></code> block will only execute if neither the <code class="docutils literal notranslate"><span class="pre">if</span></code>, nor the <code class="docutils literal notranslate"><span class="pre">elif</span></code> statement happen to be true.</p>
+<p>Before we leave this topic, let’s look at one more bit of functionality - multiple <code class="docutils literal notranslate"><span class="pre">elif</span></code>’s:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">string</span> <span class="o">=</span> <span class="s2">&quot;Hello there&quot;</span>
+
+<span class="k">if</span> <span class="s2">&quot;z&quot;</span> <span class="ow">in</span> <span class="n">string</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;there is a &#39;z&#39; here!&quot;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="s2">&quot;!&quot;</span> <span class="ow">in</span> <span class="n">string</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;this string has no alphabet characters&quot;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="s2">&quot;the&quot;</span> <span class="ow">in</span> <span class="n">string</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;there is a substring that spells &#39;the&#39;&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;no e or ! here&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>there is a substring that spells &#39;the&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this example there are <em>two</em> elif statements. We execute the second one because the <code class="docutils literal notranslate"><span class="pre">if</span></code> <em>and</em> the first <code class="docutils literal notranslate"><span class="pre">elif</span></code> are both <code class="docutils literal notranslate"><span class="pre">False</span></code>.  As an aside, in some cases, where you might have many <code class="docutils literal notranslate"><span class="pre">elif</span></code> statements, it might make more sense to combine some of these using boolean operators like <code class="docutils literal notranslate"><span class="pre">and</span></code> or <code class="docutils literal notranslate"><span class="pre">or</span></code>.  It all depends!</p>
+<p>Finally, let’s look at a problem that is often asked on computer science interviews for junior developers - fizzbuzz.</p>
+<p>The fizzbuzz problem is written as follows:</p>
+<p>For a random integer, but print “Fizz” if an integer is divisible by 3, “Buzz” if an integer is divisible by 5, and “FizzBuzz” if an integer is divisible by both 3 and 5, otherwise print the integer.</p>
+<p>Before you see the answer - try implementing this yourself on a <code class="docutils literal notranslate"><span class="pre">.py</span></code> file.  It’s good practice and likely to come up again on an interview.</p>
+<p>Answer:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+
+<span class="n">integer</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10000000</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">integer</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">integer</span> <span class="o">%</span> <span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;FizzBuzz&quot;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">integer</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fizz&quot;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">integer</span> <span class="o">%</span> <span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Buzz&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">integer</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9618121
+</pre></div>
+</div>
+</div>
+</div>
+<p>We check if the integer is divisible by 3 and by 5 first, because of the order of execution of the control statements -</p>
+<p>If we checked for divisability of 3 or 5 alone first, if the number was in fact divisible by both, we would never know.  So we <em>need</em> to check for 3 and 5 first.  After that, the ordering doesn’t matter.  Finally, we enter the else condition - simply printing the integer assuming it is neither divisible by 3 or 5.</p>
+<p>Before we leave this section - a note on divisability - can you figure out why if a number % 3 == 0 implies it’s divisible by that number?</p>
+<p>Simply recall our division algorithm from earlier:</p>
+<div class="math notranslate nohighlight">
+\[ m = aq + r \]</div>
+<p>If <span class="math notranslate nohighlight">\(r=0\)</span> this implies there is no remainder when we divide <span class="math notranslate nohighlight">\(\frac{m}{a}\)</span> this is why if <span class="math notranslate nohighlight">\(r=0\)</span> then that’s the same thing as <em>divisability</em>.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./01/4"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="../3/Libraries.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Some Libraries</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="../5/Looping-and-Lists.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Iteration, The True Power Of Programming</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

@@ -1,0 +1,9 @@
+format: jb-book
+root: intro.md
+chapters:
+- file: 01/Chapter-1-Introduction.ipynb
+- file: 01/1/Basics.ipynb
+- file: 01/2/Variables-and-Types.ipynb
+- file: 01/3/Libraries.ipynb
+- file: 01/4/Flow-of-Control.ipynb
+- file: 01/5/Looping-and-Lists.ipynb

@@ -1,0 +1,607 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Some Libraries &#8212; Introduction to Data Science and Computer Science</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Flow of Control" href="../4/Flow-of-Control.html" />
+    <link rel="prev" title="Variables and Types" href="../2/Variables-and-Types.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">Introduction to Data Science and Computer Science</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../intro.html">
+   Welcome
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Chapter-1-Introduction.html">
+   Chapter 1 Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../1/Basics.html">
+   Computer Science Basics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../2/Variables-and-Types.html">
+   Variables and Types
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Some Libraries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../4/Flow-of-Control.html">
+   Flow of Control
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../5/Looping-and-Lists.html">
+   Iteration, The True Power Of Programming
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/01/3/Libraries.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/01/3/Libraries.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   Some libraries
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="some-libraries">
+<h1>Some Libraries<a class="headerlink" href="#some-libraries" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Some Libraries</p>
+<ul>
+<li><p>math</p></li>
+<li><p>random</p></li>
+</ul>
+</li>
+</ul>
+<div class="section" id="id1">
+<h2>Some libraries<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>Up until now we’ve been looking at the core of Python.  In some very specific instances we made use of libraries, but didn’t really explain what they were, or why we could do such things.  In general the power of Python comes from a couple of places:</p>
+<ul class="simple">
+<li><p>The core of the language provides structure for how code should look, but it doesn’t provide that much functionality</p></li>
+<li><p>The standard libraries provide significantly more functionality and power</p></li>
+<li><p>External third party libraries developed by businesses and the open source community provide a truly awesome amount of functionality</p></li>
+</ul>
+<p>Today we’ll be looking at some of the standard libraries in Python.  These don’t require any extra installation and should work the same in this notebook as they do in your local machine.</p>
+<p>One thing to note though - it’s important that you are using Python 3.6+.  If you are using an older version of Python on your machine, there is no guarantee that things will work the same way.  For this course, it’s expected that you are using a ‘current’ Python version.  So if you don’t have one, you can download it for free from: <a class="reference external" href="https://www.python.org/">python.org</a></p>
+<p>First let’s look at how to use a library.  For this, we’ll need to learn about import statements.</p>
+<p>An import statement, or colloquially, just an import, is how you bring libraries into your program.  In addition to bringing a whole library into your program, you can bring in just a part of a library or just a single function or piece of data into scope.  Some libraries are <em>very</em> big so it’s best to import what you need.  In other cases, importing the library won’t work and you’ll need import specific subsections of the library.</p>
+<p>Let’s start with a simple but very useful library - <code class="docutils literal notranslate"><span class="pre">math</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">math</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;module &#39;math&#39; from &#39;/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/lib-dynload/math.cpython-39-darwin.so&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>As you can see, we’ve ‘imported’ the <code class="docutils literal notranslate"><span class="pre">math</span></code> library.  To do this, we simply say <code class="docutils literal notranslate"><span class="pre">import</span></code> and then the name of the library, like so:</p>
+<p><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">[NAME</span> <span class="pre">OF</span> <span class="pre">SOME</span> <span class="pre">LIBRARY]</span></code></p>
+<p>This is the simplest possible import statement.  There are plenty of variants of import statements.  For instance, if we just want access to all the functions in the <code class="docutils literal notranslate"><span class="pre">math</span></code> library we can do:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">[LIBRARY]</span> <span class="pre">import</span> <span class="pre">*</span></code> is generally frowned upon as it’s not obvious which functions we are importing.  So typically people will explicitly write all the functions we want from a given library.</p>
+<p>In order to figure this out, we’ll need to introduce something new - the <code class="docutils literal notranslate"><span class="pre">dir</span></code> function.  This comes builtin to Python and is generally super useful.  The <code class="docutils literal notranslate"><span class="pre">dir</span></code> function shows us all the functions associated with a library, amongst other things:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">dir</span><span class="p">(</span><span class="n">math</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;__doc__&#39;,
+ &#39;__file__&#39;,
+ &#39;__loader__&#39;,
+ &#39;__name__&#39;,
+ &#39;__package__&#39;,
+ &#39;__spec__&#39;,
+ &#39;acos&#39;,
+ &#39;acosh&#39;,
+ &#39;asin&#39;,
+ &#39;asinh&#39;,
+ &#39;atan&#39;,
+ &#39;atan2&#39;,
+ &#39;atanh&#39;,
+ &#39;ceil&#39;,
+ &#39;comb&#39;,
+ &#39;copysign&#39;,
+ &#39;cos&#39;,
+ &#39;cosh&#39;,
+ &#39;degrees&#39;,
+ &#39;dist&#39;,
+ &#39;e&#39;,
+ &#39;erf&#39;,
+ &#39;erfc&#39;,
+ &#39;exp&#39;,
+ &#39;expm1&#39;,
+ &#39;fabs&#39;,
+ &#39;factorial&#39;,
+ &#39;floor&#39;,
+ &#39;fmod&#39;,
+ &#39;frexp&#39;,
+ &#39;fsum&#39;,
+ &#39;gamma&#39;,
+ &#39;gcd&#39;,
+ &#39;hypot&#39;,
+ &#39;inf&#39;,
+ &#39;isclose&#39;,
+ &#39;isfinite&#39;,
+ &#39;isinf&#39;,
+ &#39;isnan&#39;,
+ &#39;isqrt&#39;,
+ &#39;lcm&#39;,
+ &#39;ldexp&#39;,
+ &#39;lgamma&#39;,
+ &#39;log&#39;,
+ &#39;log10&#39;,
+ &#39;log1p&#39;,
+ &#39;log2&#39;,
+ &#39;modf&#39;,
+ &#39;nan&#39;,
+ &#39;nextafter&#39;,
+ &#39;perm&#39;,
+ &#39;pi&#39;,
+ &#39;pow&#39;,
+ &#39;prod&#39;,
+ &#39;radians&#39;,
+ &#39;remainder&#39;,
+ &#39;sin&#39;,
+ &#39;sinh&#39;,
+ &#39;sqrt&#39;,
+ &#39;tan&#39;,
+ &#39;tanh&#39;,
+ &#39;tau&#39;,
+ &#39;trunc&#39;,
+ &#39;ulp&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Don’t worry about the things with the <code class="docutils literal notranslate"><span class="pre">__</span></code> for now.  They’ll be important in later chapters though!  Anyway, so now we can import specific functions from the library with an <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">[LIBRARY]</span> <span class="pre">import</span> <span class="pre">function</span></code> statement:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sqrt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This imports <code class="docutils literal notranslate"><span class="pre">sqrt</span></code> which is the square root function, which is, as we know, very useful for lots of formulas.  If you aren’t sure what a given function does, you can always look at the documentation.</p>
+<p>In Python this is done with the <code class="docutils literal notranslate"><span class="pre">help</span></code> function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">sqrt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on built-in function sqrt in module math:
+
+sqrt(x, /)
+    Return the square root of x.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Any good function will come with documentation, and all of the functions in the standard libraries in Python come with pretty good documentation, or docs for short.</p>
+<p>Now that we’ve seen what this does, let’s go through an example using it:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sqrt</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>The above should look pretty familiar - if it doesn’t, the sqrt function takes the root of a square.  You see, you can actually represent numbers as something called a <em>number shape</em>.  This is how Pythagoras thought about numbers:</p>
+<p><img alt="four as square" src="../../_images/four_square.png" /></p>
+<p>As you can see, the number 4 is a perfect square.  That’s because when we stack the dots together we end up with a square - each row has the same number of dots, and the number of dots in a row is equal to the number of rows.</p>
+<p>Let’s look at another example:</p>
+<p><img alt="nine as square" src="../../_images/nine_square.png" /></p>
+<p>Okay - so how do we get the square root, or said another way, the root of the square?  Well, we just isolate a row and count the number of dots - that’s the ‘root’ of the square!</p>
+<p><img alt="four as square root" src="../../_images/four_square_root.png" /></p>
+<p>For completeness, let’s look at the square root picture for 9:</p>
+<p><img alt="nine as square root" src="../../_images/nine_square_root.png" /></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">sqrt</span></code> function in Python does the same thing as we just did above - it finds the ‘root’ of the square.  We can also also figure out the square root for numbers that don’t have integer square roots - but we can’t represent this graphically in a simple way with number shapes.  So we’ll just show some examples:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sqrt</span><span class="p">(</span><span class="mi">27</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5.196152422706632
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sqrt</span><span class="p">(</span><span class="mi">54</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7.3484692283495345
+</pre></div>
+</div>
+</div>
+</div>
+<p>Not sure if you noticed - but in the list of math functions there was something called <code class="docutils literal notranslate"><span class="pre">pi</span></code> - this isn’t a function.  This is Python attempting to represent the number <code class="docutils literal notranslate"><span class="pre">pi</span></code> as a float.  Ofcourse, we can never <em>actually</em> do it because <code class="docutils literal notranslate"><span class="pre">pi</span></code> is irrational, and therefore is infinitely big, so computers can’t represent it with infinite precision.  But we can get a useful subset of <code class="docutils literal notranslate"><span class="pre">pi</span></code> and use it for some mathematical calculations:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">pi</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">pi</span><span class="p">,</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">pi</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.141592653589793 1.7724538509055159
+</pre></div>
+</div>
+</div>
+</div>
+<p>As you can see, we can see <code class="docutils literal notranslate"><span class="pre">sqrt</span></code> of <code class="docutils literal notranslate"><span class="pre">pi</span></code>!  But I digress.  There are a bunch more functions in math, like the trigonometric functions:</p>
+<ul class="simple">
+<li><p>acos</p></li>
+<li><p>acosh</p></li>
+<li><p>asin</p></li>
+<li><p>asinh</p></li>
+<li><p>atan</p></li>
+<li><p>atan2</p></li>
+<li><p>atanh</p></li>
+<li><p>cos</p></li>
+<li><p>cosh</p></li>
+<li><p>sin</p></li>
+<li><p>sinh</p></li>
+<li><p>tan</p></li>
+<li><p>tanh</p></li>
+</ul>
+<p>Which we won’t go over here, but you should generally be aware of!</p>
+<p>Next we are going to look at the <code class="docutils literal notranslate"><span class="pre">random</span></code> library:</p>
+<p>Generally speaking <code class="docutils literal notranslate"><span class="pre">random</span></code> let’s us generate random values.  This is going to be of huge importance for later chapters, so please play around with this library a lot!</p>
+<p>All of the standard libraries come with online documentation.  Here are <a class="reference external" href="https://docs.python.org/3/library/random.html">the docs for random</a></p>
+<p>Let’s dive in within some functions in random:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">randint</span>
+
+<span class="n">help</span><span class="p">(</span><span class="n">randint</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on method randint in module random:
+
+randint(a, b) method of random.Random instance
+    Return random integer in range [a, b], including both end points.
+</pre></div>
+</div>
+</div>
+</div>
+<p>As we can see from the docs, randint let’s us set a lower bound and an upper bound for the random integers that we generate:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9
+</pre></div>
+</div>
+</div>
+</div>
+<p>You should try running the above cell a bunch of times to see how the numbers change.</p>
+<p>Next I want to talk about something a little more high level:</p>
+<p>using <code class="docutils literal notranslate"><span class="pre">.</span></code> (dot) notation.  With dot notation, we reference the function of a library from the <em>namespace</em> of the library.  That is the name of the library, followed by a dot, followed by the function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+
+<span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9
+</pre></div>
+</div>
+</div>
+</div>
+<p>The above code is the same as in the previous code cell, but the difference is, now we don’t need to explicitly import each function, we can just call any of the functions from the library!  This isn’t always preferred and it honestly really depends.  Some of this is a matter of choice, some of this is a matter of convention.  But it all depends on <em>how</em> you want to call your functions.</p>
+<p>Another piece of syntax associated with imports - <code class="docutils literal notranslate"><span class="pre">as</span></code></p>
+<p>In addition to being able to import a library, you can also give it a different name than the name of the library:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span> <span class="k">as</span> <span class="nn">ran</span>
+<span class="kn">import</span> <span class="nn">random</span>
+
+<span class="n">random</span> <span class="ow">is</span> <span class="n">ran</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p>As you can see, the choice of giving the library a different name with <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">[LIBRARY</span> <span class="pre">NAME]</span> <span class="pre">as</span> <span class="pre">[DIFFERENT</span> <span class="pre">NAME]</span></code> doesn’t change any of it’s functionality.  And may be a useful convention in certain cases.  The popular third party library - pandas - which we will use heavily later in this course often has an abbreviated name:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You’ll see this textbook use the above convention, basically always.  So best to get used to it now.  This is the convention followed wide and large in industry as well as open source projects, as well as the personal and professional projects of both the authors of this text.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./01/3"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="../2/Variables-and-Types.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Variables and Types</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="../4/Flow-of-Control.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Flow of Control</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
