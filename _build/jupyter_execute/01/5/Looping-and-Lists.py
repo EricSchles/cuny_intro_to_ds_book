@@ -153,6 +153,175 @@ while integer < 20:
     integer += 1
 
 
+# Before we leave this section let's talk about how we can use computer science to build mathematical operations with iteration.  To do this, we'll take _simple_ mathematical operators as primitives and then we'll build up more sophisticated mathematical operators.
+# 
+# First let's look at multiplication:
+# 
+# Do you remember when you first learned multiplication in grade school? It was likely explained to use as repeatedly adding the first number, the number of times of the second number to get the product of the two numbers.
+# 
+# We can use a while loop to 'create' a multiplication, _from_ addition in this way:
+
+# In[5]:
+
+
+first = 5
+second = 4
+
+product = 0
+counter = 0
+while counter < second:
+    product += first
+    counter += 1
+print(product)
+
+
+# As you can see, by _repeatedly_ adding the first number the number of times of the second, we recover the product.  The same way we can treat repeated addition as multiplication, we can treat repeated subtraction as division:
+
+# In[11]:
+
+
+first = 5
+second = 20
+
+quotient = 0
+while second >= first:
+    quotient += 1
+    second -= first
+quotient
+
+
+# As you can see, we can get the quotient, the number of times we can evenly divide the first number by the second, to complete the division.  While the above algorithm 'works', it only does so when the first number divides the second evenly.  If we wish to recover the full division, we need to account for remainder, and provide the full division algorithm:
+# 
+# `dividend = quotient*divisor + remainder`
+# 
+# Said another way - any number integer can be written as `quotient * divisor + remainder` - the product of two numbers and the sum of a third.  Let's see the modified division algorithm to recover the quotient and the remainder:
+
+# In[12]:
+
+
+first = 5
+second = 20
+
+quotient = 0
+while second >= first:
+    quotient += 1
+    second -= first
+remainder = second
+quotient, remainder
+
+
+# This says that 5 divides 20 evenly.  Let's look at another example:
+
+# In[13]:
+
+
+first = 5
+second = 17
+
+quotient = 0
+while second >= first:
+    quotient += 1
+    second -= first
+remainder = second
+quotient, remainder
+
+
+# This says that we have (5 * 3) - 17 = 2 and that 15 is the closest factor of 5 to 17.  
+# 
+# Next let's look at higher order mathematical functions.  To do this, we'll consider the _next_ logical extension:
+# 
+# * what happens when we do repeated multiplication?
+# * what happens when we do repeated division?
+# 
+# For repeated multiplication we get exponentiation:
+
+# In[15]:
+
+
+first = 5
+second = 4
+
+exponentiation = 1
+counter = 0
+while counter < second:
+    exponentiation *= first
+    counter += 1
+print(exponentiation)
+
+
+# This is the same thing as the mathematication operation ${5}^{4}$.  We can verify this is correct by making use of the math library:
+
+# In[16]:
+
+
+import math
+
+math.pow(5, 4)
+
+
+# Next let's look at repeated division.  Which gets us the logarithm.  When considering logarithms, we need to state the log with respect to a specific base.  
+# 
+# Here are some examples of logarithms to specific bases:
+# 
+# * $log_{2} 2 = 1$
+# * $log_{2} 4 = 2$
+# * $log_{2} 8 = 3$
+# * $log_{3} 3 = 1$
+# * $log_{3} 9 = 2$
+# * $log_{3} 27 = 3$
+# 
+# In general logarithms work like this:
+# 
+# $$ log_{x} y = z <==> x^{z} = y $$
+# 
+# that means when we take the log with respect to a base, we are really asking, for this base, how do we get back the power we need to raise it to, to get a specific value.  
+# 
+# So for:
+# 
+# $$log_{3} 9 = 2$$
+# 
+# Another way to say that is, "What power of 3 is 9?  The answer is the 2nd power of 3, or $3^{2}$.  Let's write down an algorithm that will get us logarithms, when we are dealing with integer powers:
+
+# In[19]:
+
+
+base = 3
+product = 9
+
+counter = 0
+while product > 1:
+    product /= base
+    counter += 1
+counter
+
+
+# While this algorithm will only return precise answers when we are dealing with integers, this at least gives us the intuitution that logarithms are repeated division.
+# 
+# ### Breaks
+# 
+# Now that we hopefully have some sense of how loops work let's consider the following situation:
+# 
+# Suppose that we want to iterate for some _indefinite_ amount of time - that is, we know that want to loop.  And we know when a certain condition happens, we want to exit.  But we don't know when that condition will be, and it might happen after certain steps in the code block.  Specifically, it may happen _before_ a single execution of the code block completes.
+# 
+# For this we'll need a break statement.  Let's make this concrete with an example:
+
+# In[1]:
+
+
+import random
+
+summation = 0
+counter = 0
+while True:
+    summation += random.randint(0, 1000)
+    if summation > 10000:
+        break
+    counter += 1
+counter
+
+
+# We could have put the condition in the while, in this case, but then we'd be counting the an extra call to `counter += 1` and therefore we had have the _wrong_ value.  So break statements will help us a lot when we need to execute potentially before a condition completes, but before we have a chance to update a counter.  Or some other thing.
+
 # ## Lists
 # 
 # Now that we've gotten through how to represent data and iteration, the next thing to do is learn to represent "collections" of variables.  For this will need something called a list:
@@ -471,6 +640,38 @@ print(summa/size)
 
 
 # As you can see, the while loop is still a little bit faster, but the syntax is _so much_ simplier using the for loop.  That difference in complexity can be _very_ important.  Especially because expressing ideas programatically is often hard enough.  Typically there is no need for extra complicated syntax to save a few miliseconds.
+# 
+# 
+# ### Continue
+# 
+# Now that we've covered the basics of lists, we can go over another keyword within the context of loops that will be useful.  Just like there are times when we want to _exit_ a loop with a `break`, there are times when we simply don't want to continue executing a code block.  For that we have a `continue` keyword which will start over a loop.
+# 
+# Let's look at an example:
+# 
+# Suppose we had the following list of numbers:
+
+# In[2]:
+
+
+listing = [1,2,3,4,-5,-7,-8]
+
+
+# And we only wanted to sum the _positive_ numbers.  If we encounter a negative number we don't want to add it to our sum.  
+# 
+# The following code with a `continue` makes this easy:
+
+# In[3]:
+
+
+summation = 0
+for elem in listing:
+    if elem < 0:
+        continue
+    summation += elem
+summation
+
+
+# As you can see, we only sum the positive numbers in this case!
 
 # In[ ]:
 
