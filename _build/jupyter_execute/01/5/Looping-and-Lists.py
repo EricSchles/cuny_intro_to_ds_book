@@ -176,7 +176,97 @@ print(listing[4])
 
 # Notice that lists are "zero-indexed", so if there are "N" elements in our list, then the last number is in the "N"-1st position.  That's why, when we access the fourth index, we are actually getting the 5th element.
 # 
-# Let's look at how to iterate over a list using a while loop:
+# In addition to being able to store elements of the same type, we can also have lists with _multiple_ element types:
+
+# In[2]:
+
+
+x = 42 + 6
+listing = [1, 5.07, "hello", True, x]
+listing
+
+
+# As the above example shows, we can store all of the basic types that we've seen so far in a list.  We can even store _variables_ in a list.  In addition to being able to store basic types, we can also store _functions_:
+
+# In[3]:
+
+
+import random
+
+list_of_functions = [min, max, random.random, random.randint]
+
+list_of_functions[0](25, 40)
+
+
+# While the above example doesn't get used that often programmatically, it's still _possible_.  So far, we've only added elements to a list at assignment to a variable name.  But what if we wanted to start with an empty list and then _add_ elements, how would that work?
+# 
+# There are a few ways to do this:
+# 
+# * append - using this method we add elements to the end of the list
+# * insert - using this method we can add elements to any position of the list, however this requires us to specify the index we would like to add our element to.
+# 
+# Let's see some examples:
+
+# In[6]:
+
+
+listing = []
+listing.append(5)
+print(listing)
+listing.append(6)
+print(listing)
+listing.append(7)
+
+listing
+
+
+# As you can see, we first instantiate our list by assigning an empty list to the variable `listing`.  Then we add elements to the end of the list, one by one.  As stated above, using the append, 'appends' the elements to the end of our list.  This is a good typical practice, because it creates a notion of sequencing via operation.  In other words, the first element added to the list appears in the 1st position of the list, the 2nd in the second position and so on.  So we know where the element we added ended up based on it's index.  This isn't _always_ the right thing to do.  For those cases, we have the `insert` function associated with the list.
+# 
+# Let's look at an example using insert now:
+
+# In[8]:
+
+
+listing = []
+
+listing.append(5)
+listing.append(6)
+listing.append(7)
+print(listing)
+listing.insert(0, 4)
+
+print(listing)
+
+
+# Here we add the `4` in position zero, aka the first position, so that we can keep our list in order.  Note: lists need not be ordered, although it is a nice property to have from time to time.  
+# 
+# We can also insert elements in any _available_ position in the list.  Let's look at an example of this:
+
+# In[9]:
+
+
+listing = []
+
+listing.append(5)
+listing.append(6)
+listing.append(7)
+print(listing)
+listing.insert(1, 17)
+print(listing)
+
+
+# What would happen if we tried to insert in position 18 in the above list?  Note, the list only has 4 elements:
+
+# In[11]:
+
+
+listing.insert(18, 27)
+listing
+
+
+# In Python, since we don't have an 18th position, Python lists do the intelligent thing and just add the element to the end of the list.
+
+# Now let's combine what we've learned so far - this is how to iterate over a list using a while loop:
 
 # In[4]:
 
@@ -189,7 +279,101 @@ while index < len(listing):
     index += 1
 
 
-# There is actually a short hand for above, the for loop that we talked about earlier:
+# Now that we can add a bunch of elements to a list at once, we can also do a few more things with lists - that is we can calculate information over the elements of the list.  For instance, suppose we had a list of random elements and wanted to know the value of the minimum element:
+
+# In[13]:
+
+
+import random
+
+listing = []
+size = 1000
+index = 0
+
+while index < size:
+    listing.append(random.randint(0, 10000))
+    index += 1
+    
+min(listing)
+
+
+# The `min` function gives us the ability to _describe_ some sense of the information within the list, without having to look at _every_ element.  There are a bunch of functions for describing data, another one is `max`:
+
+# In[14]:
+
+
+import random
+
+listing = []
+size = 1000
+index = 0
+
+while index < size:
+    listing.append(random.randint(0, 10000))
+    index += 1
+    
+max(listing)
+
+
+# If we were interested in the boundaries of our list, we would get both of these descriptives at once:
+
+# In[15]:
+
+
+import random
+
+listing = []
+size = 1000
+index = 0
+
+while index < size:
+    listing.append(random.randint(0, 10000))
+    index += 1
+    
+min(listing), max(listing)
+
+
+# This gives us a sense of the _range_ of our random data, how big the difference is between the smallest and largest elements.
+# 
+# Within while loops there is a lot of syntax you need to account for, the extra required pieces do mean you have more flexability, but often you don't need that much flexability.  And the extra syntax can often lead to errors.  For instance, suppose we had the following while loop:
+# 
+# ```python
+# listing = []
+# size = 1000
+# index = 0
+# 
+# while index < size:
+#     listing.append(1)
+#     index += 1
+#     
+# summa = 0
+# while index <= size:
+#     summa += listing[index]
+#     index += 1
+# ```
+# 
+# Would this work?  We'll try it now just to see:
+
+# In[17]:
+
+
+listing = []
+size = 1000
+index = 0
+
+while index < size:
+    listing.append(1)
+    index += 1
+    
+summa = 0
+while index <= size:
+    summa += listing[index]
+    index += 1
+
+
+# This is one of the most common errors in computer programming, and not always easy to catch - an index out of bounds error.  This error happens when we try to index into the array at a position that is _larger_ than the array.  Since the computer doesn't have any data in that position, the computer doesn't know what to return and therefore raises an error.
+
+# That's why computer scientists developed a short hand for the while loop, called a for loop:
 
 # In[5]:
 
@@ -200,7 +384,7 @@ for element in listing:
     print(element)
 
 
-# I started this list at 2 just to make it clear that we iterate _over the elements_ of the list, not an index.
+# I started this list at 2 just to make it clear that we iterate _over the elements_ of the list, not an index.  The for loop continues to iterate until the list is out of elements.  That means we can never end up with out of bounds errors.  
 # 
 # And if we'd like to print the index _and_ the elements we can do so as follows:
 
@@ -220,6 +404,73 @@ for index, element in enumerate(listing):
 
 "thing " + 5
 
+
+# Notice from the above that with a while loop we can specify _multiple_ exit conditions, and we technically don't need something we can iterate over, like a list.  This means that while loops are capable of being _much_ cheaper from a memory standpoint and much more flexible than for loops.  That said, often times you don't need the extra flexability, and memory is pretty cheap these days, so it's unlikely a list is going to cost you much in terms of performance.
+# 
+# Let's look at two examples of pieces of code and their running times, in terms of CPU time:
+
+# In[19]:
+
+
+import random
+import time
+
+start = time.time()
+summa = 0
+index = 0
+size = 1000
+while index < size:
+    summa += random.randint(0, 1000)
+    index += 1
+    
+print(time.time() - start, "seconds")
+print(summa/size)
+
+
+# This code takes the arithmetic mean, defined as:
+# 
+# $$ \frac{1}{n}  \sum_{i=0}^{n} i $$
+# 
+# We can also do this with a for loop:
+
+# In[20]:
+
+
+import random
+import time
+
+start = time.time()
+summa = 0
+index = 0
+size = 1000
+listing = []
+while index < size:
+    listing.append(random.randint(0, 1000))
+    index += 1
+
+for elem in listing:
+    summa += elem
+print(time.time() - start, "seconds")
+print(summa/size)
+
+
+# Because we often need to populate a list with elements in a for loop, one of the things Python comes equiped with is the `range` function that iterates over an index _very_ fast.  This more or less makes up for the fact that you need to iterate over a list to use a for loop:
+
+# In[21]:
+
+
+import random
+import time
+
+start = time.time()
+summa = 0
+for elem in range(1000):
+    summa += random.randint(0, 1000)
+print(time.time() - start, "seconds")
+print(summa/size)
+
+
+# As you can see, the while loop is still a little bit faster, but the syntax is _so much_ simplier using the for loop.  That difference in complexity can be _very_ important.  Especially because expressing ideas programatically is often hard enough.  Typically there is no need for extra complicated syntax to save a few miliseconds.
 
 # In[ ]:
 

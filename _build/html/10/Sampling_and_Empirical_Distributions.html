@@ -1,0 +1,968 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sampling and Empirical Distributions &#8212; Introduction to Data Science and Computer Science</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Empirical Distributions" href="1/Empirical_Distributions.html" />
+    <link rel="prev" title="Finding Probabilities" href="../09/5/Finding_Probabilities.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">Introduction to Data Science and Computer Science</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Welcome
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01/Chapter-1-Introduction.html">
+   Chapter 1 Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01/1/Basics.html">
+   Computer Science Basics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01/2/Variables-and-Types.html">
+   Variables and Types
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01/3/Libraries.html">
+   Some Libraries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01/4/Flow-of-Control.html">
+   Flow of Control
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01/5/Looping-and-Lists.html">
+   Iteration, The True Power Of Programming
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../09/Randomness.html">
+   Randomness
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../09/1/Conditional_Statements.html">
+   Conditional Statements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../09/2/Iteration.html">
+   Iteration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../09/3/Simulation.html">
+   Simulation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../09/4/Monty_Hall_Problem.html">
+   The Monty Hall Problem
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../09/5/Finding_Probabilities.html">
+   Finding Probabilities
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Sampling and Empirical Distributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="1/Empirical_Distributions.html">
+   Empirical Distributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2/Sampling_from_a_Population.html">
+   Sampling from a Population
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="3/Empirical_Distribution_of_a_Statistic.html">
+   Empirical Distribution of a Statistic
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../11/Testing_Hypotheses.html">
+   Testing Hypotheses
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../11/1/Assessing_Models.html">
+   Assessing Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../11/2/Multiple_Categories.html">
+   Multiple Categories
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../11/3/Decisions_and_Uncertainty.html">
+   Decisions and Uncertainty
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../11/4/Error_Probabilities.html">
+   Error Probabilities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../12/Comparing_Two_Samples.html">
+   Comparing Two Samples
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../12/1/AB_Testing.html">
+   A/B Testing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../12/2/Deflategate.html">
+   Deflategate
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../12/3/Causality.html">
+   Causality
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../13/Estimation.html">
+   Estimation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../13/2/Bootstrap.html">
+   The Bootstrap
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../13/3/Confidence_Intervals.html">
+   Confidence Intervals
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../13/4/Using_Confidence_Intervals.html">
+   Using Confidence Intervals
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../14/Why_the_Mean_Matters.html">
+   Why the Mean Matters
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../14/1/Properties_of_the_Mean.html">
+   Properties of the Mean
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../14/2/Variability.html">
+   Variability
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../14/3/SD_and_the_Normal_Curve.html">
+   The SD and the Normal Curve
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../14/4/Central_Limit_Theorem.html">
+   The Central Limit Theorem
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../14/5/Variability_of_the_Sample_Mean.html">
+   The Variability of the Sample Mean
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../14/6/Choosing_a_Sample_Size.html">
+   Choosing a Sample Size
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/10/Sampling_and_Empirical_Distributions.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/10/Sampling_and_Empirical_Distributions.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="cell tag_remove-input docutils container">
+</div>
+<div class="section" id="sampling-and-empirical-distributions">
+<h1>Sampling and Empirical Distributions<a class="headerlink" href="#sampling-and-empirical-distributions" title="Permalink to this headline">¶</a></h1>
+<p>An important part of data science consists of making conclusions based on the data in random samples. In order to correctly interpret their results, data scientists have to first understand exactly what random samples are.</p>
+<p>In this chapter we will take a more careful look at sampling, with special attention to the properties of large random samples.</p>
+<p>Let’s start by drawing some samples. Our examples are based on the <code><a href="../../data/top_movies.csv">top_movies.csv</a></code> data set.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">top</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path_data</span> <span class="o">+</span> <span class="s1">&#39;top_movies.csv&#39;</span><span class="p">)</span>
+<span class="n">top</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Title</th>
+      <th>Studio</th>
+      <th>Gross</th>
+      <th>Gross (Adjusted)</th>
+      <th>Year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Star Wars: The Force Awakens</td>
+      <td>Buena Vista (Disney)</td>
+      <td>906723418</td>
+      <td>906723400</td>
+      <td>2015</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Avatar</td>
+      <td>Fox</td>
+      <td>760507625</td>
+      <td>846120800</td>
+      <td>2009</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Titanic</td>
+      <td>Paramount</td>
+      <td>658672302</td>
+      <td>1178627900</td>
+      <td>1997</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Jurassic World</td>
+      <td>Universal</td>
+      <td>652270625</td>
+      <td>687728000</td>
+      <td>2015</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Marvel's The Avengers</td>
+      <td>Buena Vista (Disney)</td>
+      <td>623357910</td>
+      <td>668866600</td>
+      <td>2012</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>195</th>
+      <td>The Caine Mutiny</td>
+      <td>Columbia</td>
+      <td>21750000</td>
+      <td>386173500</td>
+      <td>1954</td>
+    </tr>
+    <tr>
+      <th>196</th>
+      <td>The Bells of St. Mary's</td>
+      <td>RKO</td>
+      <td>21333333</td>
+      <td>545882400</td>
+      <td>1945</td>
+    </tr>
+    <tr>
+      <th>197</th>
+      <td>Duel in the Sun</td>
+      <td>Selz.</td>
+      <td>20408163</td>
+      <td>443877500</td>
+      <td>1946</td>
+    </tr>
+    <tr>
+      <th>198</th>
+      <td>Sergeant York</td>
+      <td>Warner Bros.</td>
+      <td>16361885</td>
+      <td>418671800</td>
+      <td>1941</td>
+    </tr>
+    <tr>
+      <th>199</th>
+      <td>The Four Horsemen of the Apocalypse</td>
+      <td>MPC</td>
+      <td>9183673</td>
+      <td>399489800</td>
+      <td>1921</td>
+    </tr>
+  </tbody>
+</table>
+<p>200 rows × 5 columns</p>
+</div></div></div>
+</div>
+<h2>Sampling Rows of a Table</h2>
+<p>Each row of a data table represents an individual; in <code class="docutils literal notranslate"><span class="pre">top</span></code>, each individual is a movie. Sampling individuals can thus be achieved by sampling the rows of a table.</p>
+<p>The contents of a row are the values of different variables measured on the same individual. So the contents of the sampled rows form samples of values of each of the variables.</p>
+<h2>Deterministic Samples</h2>
+<p>When you simply specify which elements of a set you want to choose, without any chances involved, you create a <em>deterministic sample</em>.</p>
+<p>You have done this many times, for example by using <code class="docutils literal notranslate"><span class="pre">take</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">top</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">100</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Title</th>
+      <th>Studio</th>
+      <th>Gross</th>
+      <th>Gross (Adjusted)</th>
+      <th>Year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3</th>
+      <td>Jurassic World</td>
+      <td>Universal</td>
+      <td>652270625</td>
+      <td>687728000</td>
+      <td>2015</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>Spider-Man</td>
+      <td>Sony</td>
+      <td>403706375</td>
+      <td>604517300</td>
+      <td>2002</td>
+    </tr>
+    <tr>
+      <th>100</th>
+      <td>Gone with the Wind</td>
+      <td>MGM</td>
+      <td>198676459</td>
+      <td>1757788200</td>
+      <td>1939</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>You have also used <code class="docutils literal notranslate"><span class="pre">where</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">top</span><span class="p">[</span><span class="n">top</span><span class="p">[</span><span class="s2">&quot;Title&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s2">&quot;Harry Potter&quot;</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Title</th>
+      <th>Studio</th>
+      <th>Gross</th>
+      <th>Gross (Adjusted)</th>
+      <th>Year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>22</th>
+      <td>Harry Potter and the Deathly Hallows Part 2</td>
+      <td>Warner Bros.</td>
+      <td>381011219</td>
+      <td>417512200</td>
+      <td>2011</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>Harry Potter and the Sorcerer's Stone</td>
+      <td>Warner Bros.</td>
+      <td>317575550</td>
+      <td>486442900</td>
+      <td>2001</td>
+    </tr>
+    <tr>
+      <th>54</th>
+      <td>Harry Potter and the Half-Blood Prince</td>
+      <td>Warner Bros.</td>
+      <td>301959197</td>
+      <td>352098800</td>
+      <td>2009</td>
+    </tr>
+    <tr>
+      <th>59</th>
+      <td>Harry Potter and the Order of the Phoenix</td>
+      <td>Warner Bros.</td>
+      <td>292004738</td>
+      <td>369250200</td>
+      <td>2007</td>
+    </tr>
+    <tr>
+      <th>62</th>
+      <td>Harry Potter and the Goblet of Fire</td>
+      <td>Warner Bros.</td>
+      <td>290013036</td>
+      <td>393024800</td>
+      <td>2005</td>
+    </tr>
+    <tr>
+      <th>69</th>
+      <td>Harry Potter and the Chamber of Secrets</td>
+      <td>Warner Bros.</td>
+      <td>261988482</td>
+      <td>390768100</td>
+      <td>2002</td>
+    </tr>
+    <tr>
+      <th>76</th>
+      <td>Harry Potter and the Prisoner of Azkaban</td>
+      <td>Warner Bros.</td>
+      <td>249541069</td>
+      <td>349598600</td>
+      <td>2004</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>While these are samples, they are not random samples. They don’t involve chance.</p>
+<h2>Probability Samples</h2><p>For describing random samples, some terminology will be helpful.</p>
+<p>A <em>population</em> is the set of all elements from whom a sample will be drawn.</p>
+<p>A <em>probability sample</em> is one for which it is possible to calculate, before the sample is drawn, the chance with which any subset of elements will enter the sample.</p>
+<p>In a probability sample, all elements need not have the same chance of being chosen.</p>
+<h2>A Random Sampling Scheme</h2>
+<p>For example, suppose you choose two people from a population that consists of three people A, B, and C, according to the following scheme:</p>
+<ul class="simple">
+<li><p>Person A is chosen with probability 1.</p></li>
+<li><p>One of Persons B or C is chosen according to the toss of a coin: if the coin lands heads, you choose B, and if it lands tails you choose C.</p></li>
+</ul>
+<p>This is a probability sample of size 2. Here are the chances of entry for all non-empty subsets:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>A: 1 
+B: 1/2
+C: 1/2
+AB: 1/2
+AC: 1/2
+BC: 0
+ABC: 0
+</pre></div>
+</div>
+<p>Person A has a higher chance of being selected than Persons B or C; indeed, Person A is certain to be selected. Since these differences are known and quantified, they can be taken into account when working with the sample.</p>
+<h2>A Systematic Sample</h2>
+<p>Imagine all the elements of the population listed in a sequence. One method of sampling starts by choosing a random position early in the list, and then evenly spaced positions after that. The sample consists of the elements in those positions. Such a sample is called a <em>systematic sample</em>.</p>
+<p>Here we will choose a systematic sample of the rows of <code class="docutils literal notranslate"><span class="pre">top</span></code>. We will start by picking one of the first 10 rows at random, and then we will pick every 10th row after that.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Choose a random start among rows 0 through 9;</span>
+<span class="sd">then take every 10th row.&quot;&quot;&quot;</span>
+
+<span class="n">start</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">top</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">top</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Title</th>
+      <th>Studio</th>
+      <th>Gross</th>
+      <th>Gross (Adjusted)</th>
+      <th>Year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>Avatar</td>
+      <td>Fox</td>
+      <td>760507625</td>
+      <td>846120800</td>
+      <td>2009</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>E.T.: The Extra-Terrestrial</td>
+      <td>Universal</td>
+      <td>435110554</td>
+      <td>1234132700</td>
+      <td>1982</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>Frozen</td>
+      <td>Buena Vista (Disney)</td>
+      <td>400738009</td>
+      <td>426656900</td>
+      <td>2013</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>Transformers: Dark of the Moon</td>
+      <td>Paramount/Dreamworks</td>
+      <td>352390543</td>
+      <td>385069700</td>
+      <td>2011</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>Transformers</td>
+      <td>Paramount/Dreamworks</td>
+      <td>319246193</td>
+      <td>403697900</td>
+      <td>2007</td>
+    </tr>
+    <tr>
+      <th>51</th>
+      <td>Pirates of the Caribbean: The Curse of the Bla...</td>
+      <td>Buena Vista (Disney)</td>
+      <td>305413918</td>
+      <td>440645400</td>
+      <td>2003</td>
+    </tr>
+    <tr>
+      <th>61</th>
+      <td>The Empire Strikes Back</td>
+      <td>Fox</td>
+      <td>290475067</td>
+      <td>854171500</td>
+      <td>1980</td>
+    </tr>
+    <tr>
+      <th>71</th>
+      <td>How the Grinch Stole Christmas</td>
+      <td>Universal</td>
+      <td>260044825</td>
+      <td>418529400</td>
+      <td>2000</td>
+    </tr>
+    <tr>
+      <th>81</th>
+      <td>Ghostbusters</td>
+      <td>Columbia</td>
+      <td>242212467</td>
+      <td>619211400</td>
+      <td>1984</td>
+    </tr>
+    <tr>
+      <th>91</th>
+      <td>Beauty and the Beast</td>
+      <td>Buena Vista (Disney)</td>
+      <td>218967620</td>
+      <td>394664300</td>
+      <td>1991</td>
+    </tr>
+    <tr>
+      <th>101</th>
+      <td>Indiana Jones and the Last Crusade</td>
+      <td>Paramount</td>
+      <td>197171806</td>
+      <td>429923500</td>
+      <td>1989</td>
+    </tr>
+    <tr>
+      <th>111</th>
+      <td>Top Gun</td>
+      <td>Paramount</td>
+      <td>179800601</td>
+      <td>417818200</td>
+      <td>1986</td>
+    </tr>
+    <tr>
+      <th>121</th>
+      <td>Robin Hood: Prince of Thieves</td>
+      <td>Warner Bros.</td>
+      <td>165493908</td>
+      <td>341994500</td>
+      <td>1991</td>
+    </tr>
+    <tr>
+      <th>131</th>
+      <td>Lethal Weapon 2</td>
+      <td>Warner Bros.</td>
+      <td>147253986</td>
+      <td>322697700</td>
+      <td>1989</td>
+    </tr>
+    <tr>
+      <th>141</th>
+      <td>Blazing Saddles</td>
+      <td>Warner Bros.</td>
+      <td>119601481</td>
+      <td>550184700</td>
+      <td>1974</td>
+    </tr>
+    <tr>
+      <th>151</th>
+      <td>Love Story</td>
+      <td>Paramount</td>
+      <td>106397186</td>
+      <td>608983900</td>
+      <td>1970</td>
+    </tr>
+    <tr>
+      <th>161</th>
+      <td>Lady and the Tramp</td>
+      <td>Disney</td>
+      <td>93602326</td>
+      <td>484893500</td>
+      <td>1955</td>
+    </tr>
+    <tr>
+      <th>171</th>
+      <td>Ben-Hur</td>
+      <td>MGM</td>
+      <td>74000000</td>
+      <td>852600000</td>
+      <td>1959</td>
+    </tr>
+    <tr>
+      <th>181</th>
+      <td>Sleeping Beauty</td>
+      <td>Disney</td>
+      <td>51600000</td>
+      <td>632281700</td>
+      <td>1959</td>
+    </tr>
+    <tr>
+      <th>191</th>
+      <td>Psycho</td>
+      <td>Universal</td>
+      <td>32000000</td>
+      <td>371200100</td>
+      <td>1960</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Run the cell a few times to see how the output varies.</p>
+<p>This systematic sample is a probability sample. In this scheme, all rows have chance <span class="math notranslate nohighlight">\(1/10\)</span> of being chosen. For example, Row 23 is chosen if and only if Row 3 is chosen, and the chance of that is <span class="math notranslate nohighlight">\(1/10\)</span>.</p>
+<p>But not all subsets have the same chance of being chosen. Because the selected rows are evenly spaced, most subsets of rows have no chance of being chosen. The only subsets that are possible are those that consist of rows all separated by multiples of 10. Any of those subsets is selected with chance 1/10.  Other subsets, like the subset containing the first 11 rows of the table, are selected with chance 0.</p>
+<h2>Random Samples Drawn With or Without Replacement</h2>
+<p>In this course, we will mostly deal with the two most straightforward methods of sampling.</p>
+<p>The first is random sampling with replacement, which (as we have seen earlier) is the default behavior of <code class="docutils literal notranslate"><span class="pre">np.random.choice</span></code> when it samples from an array.</p>
+<p>The other, called a “simple random sample”, is a sample drawn at random <em>without</em> replacement. Sampled individuals are not replaced in the population before the next individual is drawn. This is the kind of sampling that happens when you deal a hand from a deck of cards, for example.</p>
+<p>In this chapter, we will use simulation to study the behavior of large samples drawn at random with or without replacement.</p>
+<p>Drawing a random sample requires care and precision. It is not haphazard, even though that is a colloquial meaning of the word “random”. If you stand at a street corner and take as your sample the first ten people who pass by, you might think you’re sampling at random because you didn’t choose who walked by. But it’s not a random sample – it’s a <em>sample of convenience</em>. You didn’t know ahead of time the probability of each person entering the sample; perhaps you hadn’t even specified exactly who was in the population.</p>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./10"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="../09/5/Finding_Probabilities.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Finding Probabilities</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="1/Empirical_Distributions.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Empirical Distributions</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
