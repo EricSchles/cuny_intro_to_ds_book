@@ -1,0 +1,756 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Percentiles &#8212; Introduction to Data Science and Computer Science</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="The Bootstrap" href="../2/Bootstrap.html" />
+    <link rel="prev" title="Estimation" href="../Estimation.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">Introduction to Data Science and Computer Science</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../intro.html">
+   Welcome
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../01/Chapter-1-Introduction.html">
+   Chapter 1 Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../01/1/Basics.html">
+   Computer Science Basics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../01/2/Variables-and-Types.html">
+   Variables and Types
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../01/3/Libraries.html">
+   Some Libraries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../01/4/Flow-of-Control.html">
+   Flow of Control
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../01/5/Looping-and-Lists.html">
+   Iteration, The True Power Of Programming
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../09/Randomness.html">
+   Randomness
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../09/1/Conditional_Statements.html">
+   Conditional Statements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../09/2/Iteration.html">
+   Iteration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../09/3/Simulation.html">
+   Simulation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../09/4/Monty_Hall_Problem.html">
+   The Monty Hall Problem
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../09/5/Finding_Probabilities.html">
+   Finding Probabilities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../10/Sampling_and_Empirical_Distributions.html">
+   Sampling and Empirical Distributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../10/1/Empirical_Distributions.html">
+   Empirical Distributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../10/2/Sampling_from_a_Population.html">
+   Sampling from a Population
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../10/3/Empirical_Distribution_of_a_Statistic.html">
+   Empirical Distribution of a Statistic
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../11/Testing_Hypotheses.html">
+   Testing Hypotheses
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../11/1/Assessing_Models.html">
+   Assessing Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../11/2/Multiple_Categories.html">
+   Multiple Categories
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../11/3/Decisions_and_Uncertainty.html">
+   Decisions and Uncertainty
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../11/4/Error_Probabilities.html">
+   Error Probabilities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../12/Comparing_Two_Samples.html">
+   Comparing Two Samples
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../12/1/AB_Testing.html">
+   A/B Testing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../12/2/Deflategate.html">
+   Deflategate
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../12/3/Causality.html">
+   Causality
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Estimation.html">
+   Estimation
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Percentiles
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../2/Bootstrap.html">
+   The Bootstrap
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../3/Confidence_Intervals.html">
+   Confidence Intervals
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../4/Using_Confidence_Intervals.html">
+   Using Confidence Intervals
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../14/Why_the_Mean_Matters.html">
+   Why the Mean Matters
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../14/1/Properties_of_the_Mean.html">
+   Properties of the Mean
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../14/2/Variability.html">
+   Variability
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../14/3/SD_and_the_Normal_Curve.html">
+   The SD and the Normal Curve
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../14/4/Central_Limit_Theorem.html">
+   The Central Limit Theorem
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../14/5/Variability_of_the_Sample_Mean.html">
+   The Variability of the Sample Mean
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../14/6/Choosing_a_Sample_Size.html">
+   Choosing a Sample Size
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/13/1/Percentiles.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/13/1/Percentiles.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-numerical-example">
+   A Numerical Example
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-percentile-function">
+   The
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     percentile
+    </span>
+   </code>
+   function
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-general-definition">
+     The General Definition
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example">
+     Example
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#quartiles">
+   Quartiles
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="cell tag_remove-input docutils container">
+</div>
+<div class="section" id="percentiles">
+<h1>Percentiles<a class="headerlink" href="#percentiles" title="Permalink to this headline">¶</a></h1>
+<p>Numerical data can be sorted in increasing or decreasing order. Thus the values of a numerical data set have a <em>rank order</em>. A percentile is the value at a particular rank.</p>
+<p>For example, if your score on a test is on the 95th percentile, a common interpretation is that only 5% of the scores were higher than yours. The median is the 50th percentile; it is commonly assumed that 50% the values in a data set are above the median.</p>
+<p>But some care is required in giving percentiles a precise definition that works for all ranks and all lists. To see why, consider an extreme example where all the students in a class score 75 on a test. Then 75 is a natural candidate for the median, but it’s not true that 50% of the scores are above 75. Also, 75 is an equally natural candidate for the 95th percentile or the 25th or any other percentile. Ties – that is, equal data values – have to be taken into account when defining percentiles.</p>
+<p>You also have to be careful about exactly how far up the list to go when the relevant index isn’t clear. For example, what should be the 87th percentile of a collection of 10 values? The 8th value of the sorted collection, or the 9th, or somewhere in between?</p>
+<p>In this section, we will give a definition that works consistently for all ranks and all lists.</p>
+<div class="section" id="a-numerical-example">
+<h2>A Numerical Example<a class="headerlink" href="#a-numerical-example" title="Permalink to this headline">¶</a></h2>
+<p>Before giving a general definition of all percentiles, we will define the 80th percentile of a collection of values to be the smallest value in the collection that is at least as large as 80% of all of the values.</p>
+<p>For example, let’s consider the sizes of the five largest continents – Africa, Antarctica, Asia, North America, and South America – rounded to the nearest million square miles.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sizes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">12</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">7</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The 80th percentile is the smallest value that is at least as large as 80% of the elements of <code class="docutils literal notranslate"><span class="pre">sizes</span></code>, that is, four-fifths of the five elements. That’s 12:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">sizes</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 6,  7,  9, 12, 17])
+</pre></div>
+</div>
+</div>
+</div>
+<p>The 80th percentile is a value on the list, namely 12. You can see that 80% of the values are less than or equal to it, and that it is the smallest value on the list for which this is true.</p>
+<p>Analogously, the 70th percentile is the smallest value in the collection that is at least as large as 70% of the elements of <code class="docutils literal notranslate"><span class="pre">sizes</span></code>. Now 70% of 5 elements is “3.5 elements”, so the 70th percentile is the 4th element on the list. That’s 12, the same as the 80th percentile for these data.</p>
+</div>
+<div class="section" id="the-percentile-function">
+<h2>The <code class="docutils literal notranslate"><span class="pre">percentile</span></code> function<a class="headerlink" href="#the-percentile-function" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">percentile</span></code> function takes two arguments: a rank between 0 and 100, and a array. It returns the corresponding percentile of the array.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">sizes</span><span class="p">,</span> <span class="mi">70</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>11.399999999999999
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="the-general-definition">
+<h3>The General Definition<a class="headerlink" href="#the-general-definition" title="Permalink to this headline">¶</a></h3>
+<p>Let <span class="math notranslate nohighlight">\(p\)</span> be a number between 0 and 100. The <span class="math notranslate nohighlight">\(p\)</span>th percentile of a collection is the smallest value in the collection that is at least as large as p% of all the values.</p>
+<p>By this definition, any percentile between 0 and 100 can be computed for any collection of values, and it is always an element of the collection.</p>
+<p>In practical terms, suppose there are <span class="math notranslate nohighlight">\(n\)</span> elements in the collection. To find the <span class="math notranslate nohighlight">\(p\)</span>th percentile:</p>
+<ul class="simple">
+<li><p>Sort the collection in increasing order.</p></li>
+<li><p>Find p% of n: <span class="math notranslate nohighlight">\((p/100) \times n\)</span>. Call that <span class="math notranslate nohighlight">\(k\)</span>.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(k\)</span> is an integer, take the <span class="math notranslate nohighlight">\(k\)</span>th element of the sorted collection.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(k\)</span> is not an integer, round it up to the next integer, and take that element of the sorted collection.</p></li>
+</ul>
+</div>
+<div class="section" id="example">
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
+<p>The table <code class="docutils literal notranslate"><span class="pre">scores_and_sections</span></code> contains one row for each student in a class of 359 students. The columns are the student’s discussion section and midterm score.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scores_and_sections</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path_data</span> <span class="o">+</span> <span class="s1">&#39;scores_by_section.csv&#39;</span><span class="p">)</span>
+<span class="n">scores_and_sections</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Section</th>
+      <th>Midterm</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>22</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>23</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>20</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>354</th>
+      <td>5</td>
+      <td>24</td>
+    </tr>
+    <tr>
+      <th>355</th>
+      <td>2</td>
+      <td>16</td>
+    </tr>
+    <tr>
+      <th>356</th>
+      <td>2</td>
+      <td>17</td>
+    </tr>
+    <tr>
+      <th>357</th>
+      <td>12</td>
+      <td>16</td>
+    </tr>
+    <tr>
+      <th>358</th>
+      <td>10</td>
+      <td>14</td>
+    </tr>
+  </tbody>
+</table>
+<p>359 rows × 2 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scores_and_sections</span><span class="p">[</span><span class="s1">&#39;Midterm&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">25.6</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:&gt;
+</pre></div>
+</div>
+<img alt="../../_images/Percentiles_12_1.png" src="../../_images/Percentiles_12_1.png" />
+</div>
+</div>
+<p>What was the 85th percentile of the scores? To use the <code class="docutils literal notranslate"><span class="pre">percentile</span></code> function, create an array <code class="docutils literal notranslate"><span class="pre">scores</span></code> containing the midterm scores, and find the 85th percentile:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scores</span> <span class="o">=</span> <span class="n">scores_and_sections</span><span class="p">[</span><span class="s2">&quot;Midterm&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="mi">85</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>According to the percentile function, the 85th percentile was 22. To check that this is consistent with our new definition, let’s apply the definition directly.</p>
+<p>First, put the scores in increasing order:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sorted_scores</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">scores_and_sections</span><span class="p">[</span><span class="s2">&quot;Midterm&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>There are 359 scores in the array. So next, find 85% of 359, which is 305.15.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mf">0.85</span> <span class="o">*</span> <span class="mi">359</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>305.15
+</pre></div>
+</div>
+</div>
+</div>
+<p>That’s not an integer. By our definition, the 85th percentile is the 306th element of <code class="docutils literal notranslate"><span class="pre">sorted_scores</span></code>, which, by Python’s indexing convention, is item 305 of the array.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The 306th element of the sorted array</span>
+
+<span class="n">sorted_scores</span><span class="p">[</span><span class="mi">305</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22
+</pre></div>
+</div>
+</div>
+</div>
+<p>That’s the same as the answer we got by using <code class="docutils literal notranslate"><span class="pre">percentile</span></code>. In future, we will just use <code class="docutils literal notranslate"><span class="pre">percentile</span></code>.</p>
+</div>
+</div>
+<div class="section" id="quartiles">
+<h2>Quartiles<a class="headerlink" href="#quartiles" title="Permalink to this headline">¶</a></h2>
+<p>The <em>first quartile</em> of a numercial collection is the 25th percentile. The terminology arises from <em>the first quarter</em>. The second quartile is the median, and the third quartile is the 75th percentile.</p>
+<p>For our <code class="docutils literal notranslate"><span class="pre">scores</span></code> data, those values are:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>11.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>16.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="mi">75</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>20.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Distributions of scores are sometimes summarized by the “middle 50%” interval, between the first and third quartiles.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./13/1"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="../Estimation.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Estimation</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="../2/Bootstrap.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">The Bootstrap</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

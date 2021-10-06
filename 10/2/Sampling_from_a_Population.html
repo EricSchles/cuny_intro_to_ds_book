@@ -1,0 +1,712 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sampling from a Population &#8212; Introduction to Data Science and Computer Science</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Empirical Distribution of a Statistic" href="../3/Empirical_Distribution_of_a_Statistic.html" />
+    <link rel="prev" title="Empirical Distributions" href="../1/Empirical_Distributions.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">Introduction to Data Science and Computer Science</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../intro.html">
+   Welcome
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../01/Chapter-1-Introduction.html">
+   Chapter 1 Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../01/1/Basics.html">
+   Computer Science Basics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../01/2/Variables-and-Types.html">
+   Variables and Types
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../01/3/Libraries.html">
+   Some Libraries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../01/4/Flow-of-Control.html">
+   Flow of Control
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../01/5/Looping-and-Lists.html">
+   Iteration, The True Power Of Programming
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../09/Randomness.html">
+   Randomness
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../09/1/Conditional_Statements.html">
+   Conditional Statements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../09/2/Iteration.html">
+   Iteration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../09/3/Simulation.html">
+   Simulation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../09/4/Monty_Hall_Problem.html">
+   The Monty Hall Problem
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../09/5/Finding_Probabilities.html">
+   Finding Probabilities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Sampling_and_Empirical_Distributions.html">
+   Sampling and Empirical Distributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../1/Empirical_Distributions.html">
+   Empirical Distributions
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Sampling from a Population
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../3/Empirical_Distribution_of_a_Statistic.html">
+   Empirical Distribution of a Statistic
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../11/Testing_Hypotheses.html">
+   Testing Hypotheses
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../11/1/Assessing_Models.html">
+   Assessing Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../11/2/Multiple_Categories.html">
+   Multiple Categories
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../11/3/Decisions_and_Uncertainty.html">
+   Decisions and Uncertainty
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../11/4/Error_Probabilities.html">
+   Error Probabilities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../12/Comparing_Two_Samples.html">
+   Comparing Two Samples
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../12/1/AB_Testing.html">
+   A/B Testing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../12/2/Deflategate.html">
+   Deflategate
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../12/3/Causality.html">
+   Causality
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../13/Estimation.html">
+   Estimation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../13/2/Bootstrap.html">
+   The Bootstrap
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../13/3/Confidence_Intervals.html">
+   Confidence Intervals
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../13/4/Using_Confidence_Intervals.html">
+   Using Confidence Intervals
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../14/Why_the_Mean_Matters.html">
+   Why the Mean Matters
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../14/1/Properties_of_the_Mean.html">
+   Properties of the Mean
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../14/2/Variability.html">
+   Variability
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../14/3/SD_and_the_Normal_Curve.html">
+   The SD and the Normal Curve
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../14/4/Central_Limit_Theorem.html">
+   The Central Limit Theorem
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../14/5/Variability_of_the_Sample_Mean.html">
+   The Variability of the Sample Mean
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../14/6/Choosing_a_Sample_Size.html">
+   Choosing a Sample Size
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/10/2/Sampling_from_a_Population.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/10/2/Sampling_from_a_Population.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#empirical-distribution-of-the-sample">
+   Empirical Distribution of the Sample
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#convergence-of-the-empirical-histogram-of-the-sample">
+   Convergence of the Empirical Histogram of the Sample
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="cell tag_remove-input docutils container">
+</div>
+<div class="section" id="sampling-from-a-population">
+<h1>Sampling from a Population<a class="headerlink" href="#sampling-from-a-population" title="Permalink to this headline">¶</a></h1>
+<p>The law of averages also holds when the random sample is drawn from individuals in a large population.</p>
+<p>As an example, we will study a population of flight delay times. The table <code class="docutils literal notranslate"><span class="pre">united</span></code> contains data for United Airlines domestic flights departing from San Francisco in the summer of 2015. The data are made publicly available by the <a class="reference external" href="http://www.transtats.bts.gov/Fields.asp?Table_ID=293">Bureau of Transportation Statistics</a> in the United States Department of Transportation.</p>
+<p>There are 13,825 rows, each corresponding to a flight. The columns are the date of the flight, the flight number, the destination airport code, and the departure delay time in minutes. Some delay times are negative; those flights left early.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">united</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path_data</span> <span class="o">+</span> <span class="s1">&#39;united_summer2015.csv&#39;</span><span class="p">)</span>
+<span class="n">united</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>Flight Number</th>
+      <th>Destination</th>
+      <th>Delay</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>6/1/15</td>
+      <td>73</td>
+      <td>HNL</td>
+      <td>257</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>6/1/15</td>
+      <td>217</td>
+      <td>EWR</td>
+      <td>28</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>6/1/15</td>
+      <td>237</td>
+      <td>STL</td>
+      <td>-3</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>6/1/15</td>
+      <td>250</td>
+      <td>SAN</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>6/1/15</td>
+      <td>267</td>
+      <td>PHL</td>
+      <td>64</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>13820</th>
+      <td>8/31/15</td>
+      <td>1978</td>
+      <td>LAS</td>
+      <td>-4</td>
+    </tr>
+    <tr>
+      <th>13821</th>
+      <td>8/31/15</td>
+      <td>1993</td>
+      <td>IAD</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>13822</th>
+      <td>8/31/15</td>
+      <td>1994</td>
+      <td>ORD</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>13823</th>
+      <td>8/31/15</td>
+      <td>2000</td>
+      <td>PHX</td>
+      <td>-1</td>
+    </tr>
+    <tr>
+      <th>13824</th>
+      <td>8/31/15</td>
+      <td>2013</td>
+      <td>EWR</td>
+      <td>-2</td>
+    </tr>
+  </tbody>
+</table>
+<p>13825 rows × 4 columns</p>
+</div></div></div>
+</div>
+<p>One flight departed 16 minutes early, and one was 580 minutes late. The other delay times were almost all between -10 minutes and 200 minutes, as the histogram below shows.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">united</span><span class="p">[</span><span class="s1">&#39;Delay&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-16
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">united</span><span class="p">[</span><span class="s1">&#39;Delay&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>580
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">delay_bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">301</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="mi">600</span><span class="p">)</span>
+<span class="n">united</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s1">&#39;Delay&#39;</span><span class="p">,</span> <span class="n">bins</span> <span class="o">=</span> <span class="n">delay_bins</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Delay (minute)&quot;</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Per minute&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Per minute&#39;)
+</pre></div>
+</div>
+<img alt="../../_images/Sampling_from_a_Population_6_1.png" src="../../_images/Sampling_from_a_Population_6_1.png" />
+</div>
+</div>
+<p>For the purposes of this section, it is enough to zoom in on the bulk of the data and ignore the 0.8% of flights that had delays of more than 200 minutes. This restriction is just for visual convenience; the table still retains all the data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">united</span><span class="p">[</span><span class="n">united</span><span class="p">[</span><span class="s1">&#39;Delay&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">200</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">united</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.008390596745027125
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">delay_bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">201</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">united</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s1">&#39;Delay&#39;</span><span class="p">,</span> <span class="n">bins</span> <span class="o">=</span> <span class="n">delay_bins</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Delay (minute)&quot;</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Per minute&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Per minute&#39;)
+</pre></div>
+</div>
+<img alt="../../_images/Sampling_from_a_Population_9_1.png" src="../../_images/Sampling_from_a_Population_9_1.png" />
+</div>
+</div>
+<p>The height of the [0, 10) bar is just under 3% per minute, which means that just under 30% of the flights had delays between 0 and 10 minutes. That is confirmed by counting rows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">united</span><span class="p">[</span><span class="n">united</span><span class="p">[</span><span class="s2">&quot;Delay&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">united</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.3082097649186257
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="empirical-distribution-of-the-sample">
+<h2>Empirical Distribution of the Sample<a class="headerlink" href="#empirical-distribution-of-the-sample" title="Permalink to this headline">¶</a></h2>
+<p>Let us now think of the 13,825 flights as a population, and draw random samples from it with replacement. It is helpful to package our code into a function. The function <code class="docutils literal notranslate"><span class="pre">empirical_hist_delay</span></code> takes the sample size as its argument and draws an empiricial histogram of the results.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">empirical_hist_delay</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">delay_bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">201</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="n">united</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s1">&#39;Delay&#39;</span><span class="p">,</span> <span class="n">bins</span> <span class="o">=</span> <span class="n">delay_bins</span><span class="p">)</span>
+    <span class="n">plots</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Delay (minute)&quot;</span><span class="p">)</span>
+    <span class="n">plots</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Per minute&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>As we saw with the dice, as the sample size increases, the empirical histogram of the sample more closely resembles the histogram of the population. Compare these histograms to the population histogram above.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">empirical_hist_delay</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Sampling_from_a_Population_15_0.png" src="../../_images/Sampling_from_a_Population_15_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">empirical_hist_delay</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Sampling_from_a_Population_16_0.png" src="../../_images/Sampling_from_a_Population_16_0.png" />
+</div>
+</div>
+<p>The most consistently visible discrepancies are among the values that are rare in the population. In our example, those values are in the the right hand tail of the distribution. But as the sample size increases, even those values begin to appear in the sample in roughly the correct proportions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">empirical_hist_delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Sampling_from_a_Population_18_0.png" src="../../_images/Sampling_from_a_Population_18_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="convergence-of-the-empirical-histogram-of-the-sample">
+<h2>Convergence of the Empirical Histogram of the Sample<a class="headerlink" href="#convergence-of-the-empirical-histogram-of-the-sample" title="Permalink to this headline">¶</a></h2>
+<p>What we have observed in this section can be summarized as follows:</p>
+<p>For a large random sample, the empirical histogram of the sample resembles the histogram of the population, with high probability.</p>
+<p>This justifies the use of large random samples in statistical inference. The idea is that since a large random sample is likely to resemble the population from which it is drawn, quantities computed from the values in the sample are likely to be close to the corresponding quantities in the population.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./10/2"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="../1/Empirical_Distributions.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Empirical Distributions</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="../3/Empirical_Distribution_of_a_Statistic.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Empirical Distribution of a Statistic</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

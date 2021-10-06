@@ -1,0 +1,649 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Conditional Statements &#8212; Introduction to Data Science and Computer Science</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Iteration" href="../2/Iteration.html" />
+    <link rel="prev" title="Randomness" href="../Randomness.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">Introduction to Data Science and Computer Science</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../intro.html">
+   Welcome
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../01/Chapter-1-Introduction.html">
+   Chapter 1 Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../01/1/Basics.html">
+   Computer Science Basics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../01/2/Variables-and-Types.html">
+   Variables and Types
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../01/3/Libraries.html">
+   Some Libraries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../01/4/Flow-of-Control.html">
+   Flow of Control
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../01/5/Looping-and-Lists.html">
+   Iteration, The True Power Of Programming
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Randomness.html">
+   Randomness
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Conditional Statements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../2/Iteration.html">
+   Iteration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../3/Simulation.html">
+   Simulation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../4/Monty_Hall_Problem.html">
+   The Monty Hall Problem
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../5/Finding_Probabilities.html">
+   Finding Probabilities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../10/Sampling_and_Empirical_Distributions.html">
+   Sampling and Empirical Distributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../10/1/Empirical_Distributions.html">
+   Empirical Distributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../10/2/Sampling_from_a_Population.html">
+   Sampling from a Population
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../10/3/Empirical_Distribution_of_a_Statistic.html">
+   Empirical Distribution of a Statistic
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../11/Testing_Hypotheses.html">
+   Testing Hypotheses
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../11/1/Assessing_Models.html">
+   Assessing Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../11/2/Multiple_Categories.html">
+   Multiple Categories
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../11/3/Decisions_and_Uncertainty.html">
+   Decisions and Uncertainty
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../11/4/Error_Probabilities.html">
+   Error Probabilities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../12/Comparing_Two_Samples.html">
+   Comparing Two Samples
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../12/1/AB_Testing.html">
+   A/B Testing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../12/2/Deflategate.html">
+   Deflategate
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../12/3/Causality.html">
+   Causality
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../13/Estimation.html">
+   Estimation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../13/2/Bootstrap.html">
+   The Bootstrap
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../13/3/Confidence_Intervals.html">
+   Confidence Intervals
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../13/4/Using_Confidence_Intervals.html">
+   Using Confidence Intervals
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../14/Why_the_Mean_Matters.html">
+   Why the Mean Matters
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../14/1/Properties_of_the_Mean.html">
+   Properties of the Mean
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../14/2/Variability.html">
+   Variability
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../14/3/SD_and_the_Normal_Curve.html">
+   The SD and the Normal Curve
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../14/4/Central_Limit_Theorem.html">
+   The Central Limit Theorem
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../14/5/Variability_of_the_Sample_Mean.html">
+   The Variability of the Sample Mean
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../14/6/Choosing_a_Sample_Size.html">
+   Choosing a Sample Size
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/09/1/Conditional_Statements.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/09/1/Conditional_Statements.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-general-form">
+   The General Form
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-betting-on-a-die">
+   Example: Betting on a Die
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="cell tag_remove-input docutils container">
+</div>
+<div class="section" id="conditional-statements">
+<h1>Conditional Statements<a class="headerlink" href="#conditional-statements" title="Permalink to this headline">¶</a></h1>
+<p>In many situations, actions and results depends on a specific set of conditions being satisfied. For example, individuals in randomized controlled trials receive the treatment if they have been assigned to the treatment group. A gambler makes money if she wins her bet.</p>
+<p>In this section we will learn how to describe such situations using code. A <em>conditional statement</em> is a multi-line statement that allows Python to choose among different alternatives based on the truth value of an expression. While conditional statements can appear anywhere, they appear most often within the body of a function in order to express alternative behavior depending on argument values.</p>
+<p>A conditional statement always begins with an <code class="docutils literal notranslate"><span class="pre">if</span></code> header, which is a single line followed by an indented body. The body is only executed if the expression directly following <code class="docutils literal notranslate"><span class="pre">if</span></code> (called the <em>if expression</em>) evaluates to a true value. If the <em>if expression</em> evaluates to a false value, then the body of the <code class="docutils literal notranslate"><span class="pre">if</span></code> is skipped.</p>
+<p>Let us start defining a function that returns the sign of a number.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sign</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;Positive&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sign</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Positive&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>This function returns the correct sign if the input is a positive number. But if the input is not a positive number, then the <em>if expression</em> evaluates to a false value, and so the <code class="docutils literal notranslate"><span class="pre">return</span></code> statement is skipped and the function call has no value.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sign</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>So let us refine our function to return <code class="docutils literal notranslate"><span class="pre">Negative</span></code> if the input is a negative number. We can do this by adding an <code class="docutils literal notranslate"><span class="pre">elif</span></code> clause, where <code class="docutils literal notranslate"><span class="pre">elif</span></code> if Python’s shorthand for the phrase “else, if”.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sign</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;Positive&#39;</span>
+    <span class="k">elif</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;Negative&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now <code class="docutils literal notranslate"><span class="pre">sign</span></code> returns the correct answer when the input is -3:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sign</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Negative&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>What if the input is 0? To deal with this case, we can add another <code class="docutils literal notranslate"><span class="pre">elif</span></code> clause:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sign</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;Positive&#39;</span>
+    <span class="k">elif</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;Negative&#39;</span>
+    <span class="k">elif</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;Neither positive nor negative&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sign</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Neither positive nor negative&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Equivalently, we can replace the final <code class="docutils literal notranslate"><span class="pre">elif</span></code> clause by an <code class="docutils literal notranslate"><span class="pre">else</span></code> clause, whose body will be executed only if all the previous comparisons are false; that is, if the input value is equal to 0.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sign</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;Positive&#39;</span>
+    <span class="k">elif</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;Negative&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;Neither positive nor negative&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sign</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Neither positive nor negative&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="the-general-form">
+<h2>The General Form<a class="headerlink" href="#the-general-form" title="Permalink to this headline">¶</a></h2>
+<p>A conditional statement can also have multiple clauses with multiple bodies, and only one of those bodies can ever be executed. The general format of a multi-clause conditional statement appears below.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>if &lt;if expression&gt;:
+    &lt;if body&gt;
+elif &lt;elif expression 0&gt;:
+    &lt;elif body 0&gt;
+elif &lt;elif expression 1&gt;:
+    &lt;elif body 1&gt;
+...
+else:
+    &lt;else body&gt;
+</pre></div>
+</div>
+<p>There is always exactly one <code class="docutils literal notranslate"><span class="pre">if</span></code> clause, but there can be any number of <code class="docutils literal notranslate"><span class="pre">elif</span></code> clauses. Python will evaluate the <code class="docutils literal notranslate"><span class="pre">if</span></code> and <code class="docutils literal notranslate"><span class="pre">elif</span></code> expressions in the headers in order until one is found that is a true value, then execute the corresponding body. The <code class="docutils literal notranslate"><span class="pre">else</span></code> clause is optional. When an <code class="docutils literal notranslate"><span class="pre">else</span></code> header is provided, its <em>else body</em> is executed only if none of the header expressions of the previous clauses are true. The <code class="docutils literal notranslate"><span class="pre">else</span></code> clause must always come at the end (or not at all).</p>
+</div>
+<div class="section" id="example-betting-on-a-die">
+<h2>Example: Betting on a Die<a class="headerlink" href="#example-betting-on-a-die" title="Permalink to this headline">¶</a></h2>
+<p>Suppose I bet on a roll of a fair die. The rules of the game:</p>
+<ul class="simple">
+<li><p>If the die shows 1 spot or 2 spots, I lose a dollar.</p></li>
+<li><p>If the die shows 3 spots or 4 spots, I neither lose money nor gain money.</p></li>
+<li><p>If the die shows 5 spots or 6 spots, I gain a dollar.</p></li>
+</ul>
+<p>We will now use conditional statements to define a function <code class="docutils literal notranslate"><span class="pre">one_bet</span></code> that takes the number of spots on the roll and returns my net gain.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">one_bet</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns my net gain if the die shows x spots&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="k">elif</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="mi">4</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">elif</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="mi">6</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s check that the function does the right thing for each different number of spots.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">one_bet</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">one_bet</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">one_bet</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">one_bet</span> <span class="p">(</span><span class="mi">4</span><span class="p">),</span> <span class="n">one_bet</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">one_bet</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-1, -1, 0, 0, 1, 1)
+</pre></div>
+</div>
+</div>
+</div>
+<p>As a review of how conditional statements work, let’s see what <code class="docutils literal notranslate"><span class="pre">one_bet</span></code> does when the input is 3.</p>
+<ul class="simple">
+<li><p>First it evaluates the <code class="docutils literal notranslate"><span class="pre">if</span></code> expression, which is <code class="docutils literal notranslate"><span class="pre">3</span> <span class="pre">&lt;=</span> <span class="pre">2</span></code> which is <code class="docutils literal notranslate"><span class="pre">False</span></code>. So <code class="docutils literal notranslate"><span class="pre">one_bet</span></code> doesn’t execute the <code class="docutils literal notranslate"><span class="pre">if</span></code> body.</p></li>
+<li><p>Then it evaluates the first <code class="docutils literal notranslate"><span class="pre">elif</span></code> expression, which is <code class="docutils literal notranslate"><span class="pre">3</span> <span class="pre">&lt;=</span> <span class="pre">4</span></code>, which is <code class="docutils literal notranslate"><span class="pre">True</span></code>. So <code class="docutils literal notranslate"><span class="pre">one_bet</span></code> executes the first <code class="docutils literal notranslate"><span class="pre">elif</span></code> body and returns 0.</p></li>
+<li><p>Once the body has been executed, the process is complete. The next <code class="docutils literal notranslate"><span class="pre">elif</span></code> expression is not evaluated.</p></li>
+</ul>
+<p>If for some reason we use an input greater than 6, then the <code class="docutils literal notranslate"><span class="pre">if</span></code> expression evaluates to <code class="docutils literal notranslate"><span class="pre">False</span></code> as do both of the <code class="docutils literal notranslate"><span class="pre">elif</span></code> expressions. So <code class="docutils literal notranslate"><span class="pre">one_bet</span></code> does not execute the <code class="docutils literal notranslate"><span class="pre">if</span></code> body nor the two <code class="docutils literal notranslate"><span class="pre">elif</span></code> bodies, and there is no value when you make the call below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">one_bet</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To play the game based on one roll of a die, you can use <code class="docutils literal notranslate"><span class="pre">np.random.choice</span></code> to generate the number of spots and then use that as the argument to <code class="docutils literal notranslate"><span class="pre">one_bet</span></code>. Run the cell a few times to see how the output changes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">one_bet</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1
+</pre></div>
+</div>
+</div>
+</div>
+<p>At this point it is natural to want to collect the results of all the bets so that we can analyze them. In the next section we develop a way to do this without running the cell over and over again.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./09/1"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="../Randomness.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Randomness</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="../2/Iteration.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Iteration</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
