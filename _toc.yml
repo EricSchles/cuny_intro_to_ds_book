@@ -11,6 +11,7 @@ chapters:
 - file: 02/Chapter-2-More-Python.ipynb
   sections:
     - file: 02/1/list-strings-tuples.ipynb
+    - file: 02/2/numpy.ipynb
 - file: 09/Randomness.ipynb
   sections:
   - file: 09/1/Conditional_Statements.ipynb
