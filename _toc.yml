@@ -12,6 +12,7 @@ chapters:
   sections:
     - file: 02/1/list-strings-tuples.ipynb
     - file: 02/2/numpy.ipynb
+    - file: 02/3/dictionaries_visualization_descriptive_statistics.ipynb
 - file: 09/Randomness.ipynb
   sections:
   - file: 09/1/Conditional_Statements.ipynb
