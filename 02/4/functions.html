@@ -439,6 +439,51 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Functions
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#why">
+   Why
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scoping-parameters-and-return">
+   Scoping, Parameters, and Return
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#scope">
+     Scope
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#parameters">
+     Parameters
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#returns">
+     Returns
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#functions-and-flow-of-control">
+   Functions and Flow of Control
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -449,29 +494,504 @@
                 
   <div class="section" id="functions">
 <h1>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h1>
-<p>We’ve informally seen functions throughout this book so far, but now we’ll give them a formal introduction.  Let’s look at an example:</p>
+<p>In this last section of chapter one we will be going over functions, a cornerstone of programming and one of the most important concepts you’ll learn in this class.</p>
+<p>We’ll cover:</p>
+<ul class="simple">
+<li><p>why</p></li>
+<li><p>scoping, parameters, return</p></li>
+<li><p>functions and flow of control</p></li>
+<li><p>functions and iteration</p></li>
+<li><p>multiple returns</p></li>
+<li><p>some basic algorithms</p></li>
+</ul>
+<p>Before we go through the sections, let’s just see some examples of functions:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">greeting</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
-    <span class="k">return</span> <span class="s2">&quot;Hello &quot;</span> <span class="o">+</span> <span class="n">name</span>
-
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello &quot;</span><span class="o">+</span><span class="n">name</span><span class="p">)</span>
+    
 <span class="n">greeting</span><span class="p">(</span><span class="s2">&quot;Eric&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Hello Eric&#39;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hello Eric
 </pre></div>
 </div>
 </div>
 </div>
-<p>Let’s look at the syntax around functions:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">FUNCTION_NAME</span><span class="p">(</span><span class="n">PARAMETER_1</span><span class="p">,</span> <span class="n">PARAMETER_2</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">PARAMETER_N</span><span class="p">):</span>
-    <span class="n">code</span> <span class="n">block</span><span class="o">..</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">PARAMETER_1</span><span class="p">,</span> <span class="n">PARAMETER_2</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">PARAMETER_N</span><span class="p">)</span>
+<p>This is the general syntax of a function in Python, it’s pretty similar to a function in almost any language you’ll learn.  The basic style of Python functions are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">FUNCTION_NAME</span><span class="p">(</span><span class="n">PARAMETER_1</span><span class="p">,</span> <span class="n">PARAMETER_2</span><span class="p">,</span><span class="o">..</span><span class="n">PARAMETER_N</span><span class="p">):</span>
+    <span class="n">FUNCTION</span> <span class="n">BODY</span> <span class="n">GOES</span> <span class="n">HERE</span>
+    <span class="p">[</span><span class="n">OPTIONAL</span><span class="p">]</span> <span class="k">return</span> <span class="n">SOME_VALUES</span>
 </pre></div>
 </div>
-<p>a function is a block of code that runs in a local context, separate from the global scope of the program.  Next let’s see how a function can make our code cleaner:</p>
+<p>As you can see the important keyword is <code class="docutils literal notranslate"><span class="pre">def</span></code> before the function name, the <code class="docutils literal notranslate"><span class="pre">:</span></code> just like we used in if/elif/else statements and then a tabbed in body, just like in if/elif/else statements.</p>
+<p>The difference between these two programming concepts will become clear in a moment and what this concept tries to express.</p>
+</div>
+<div class="section" id="why">
+<h1>Why<a class="headerlink" href="#why" title="Permalink to this headline">¶</a></h1>
+<p>Functions in general, from a programmatic standpoint, serve the process of storing code for reuse.  This is not dis-similiar from what you’ve seen thus far in this chapter with respect to iterations.  Recall our simple for loop:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">summation</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">summation</span> <span class="o">+=</span> <span class="n">i</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">summation</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>45
+</pre></div>
+</div>
+</div>
+</div>
+<p>Technically this above code is the same as:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">summation</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">summation</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="n">summation</span> <span class="o">+=</span> <span class="mi">2</span>
+<span class="n">summation</span> <span class="o">+=</span> <span class="mi">3</span>
+<span class="n">summation</span> <span class="o">+=</span> <span class="mi">4</span>
+<span class="n">summation</span> <span class="o">+=</span> <span class="mi">5</span>
+<span class="n">summation</span> <span class="o">+=</span> <span class="mi">6</span>
+<span class="n">summation</span> <span class="o">+=</span> <span class="mi">7</span>
+<span class="n">summation</span> <span class="o">+=</span> <span class="mi">8</span>
+<span class="n">summation</span> <span class="o">+=</span> <span class="mi">9</span>
+
+<span class="n">summation</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>45
+</pre></div>
+</div>
+</div>
+</div>
+<p>So why is the former prefered to the latter?  The answer, from a superficial standpoint is, simplicity, we just have to type less.  But there is additional benefit - <em>expressiveness</em>.  When something is sorter and cleaner, it is hopefully clearer.  That’s <em>why</em> we use iteration.  The same is true from a superficial standpoint with functions.</p>
+<p>Suppose you had the following code:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">names</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;eric&quot;</span><span class="p">,</span> <span class="s2">&quot;susan&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Phil&quot;</span><span class="p">,</span> <span class="s2">&quot;barbara&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;jim&quot;</span><span class="p">,</span> <span class="s2">&quot;carmen&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;chadwick&quot;</span>
+<span class="p">]</span>
+<span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">:</span>
+    <span class="n">greeting_string</span> <span class="o">=</span> <span class="s2">&quot;Hello &quot;</span>
+    <span class="k">if</span> <span class="n">name</span><span class="o">.</span><span class="n">islower</span><span class="p">():</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">greeting_string</span> <span class="o">+</span> <span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hello Eric
+Hello Susan
+Hello Phil
+Hello Barbara
+Hello Jim
+Hello Carmen
+Hello Chadwick
+</pre></div>
+</div>
+</div>
+</div>
+<p>The code inside the for loop isn’t that messy, but it’s not the most readable.  If we added a function and removed some of the code inside the loop then it would be easier to read:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">create_greeting</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">name</span><span class="o">.</span><span class="n">islower</span><span class="p">():</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span>
+    <span class="k">return</span> <span class="s2">&quot;Hello &quot;</span> <span class="o">+</span> <span class="n">name</span>
+
+<span class="n">names</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;eric&quot;</span><span class="p">,</span> <span class="s2">&quot;susan&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Phil&quot;</span><span class="p">,</span> <span class="s2">&quot;barbara&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;jim&quot;</span><span class="p">,</span> <span class="s2">&quot;carmen&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;chadwick&quot;</span>
+<span class="p">]</span>
+<span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">create_greeting</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hello Eric
+Hello Susan
+Hello Phil
+Hello Barbara
+Hello Jim
+Hello Carmen
+Hello Chadwick
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice, now it’s clearer what’s happening in the for loop, because we simplified it by abstracting the details out to functions.  This was perhaps a contrieved example, however the general point should stand out: functions allow us to easily reuse pieces of code.</p>
+<p>We’ve already seen this several times.  Recall from earlier sections, the <code class="docutils literal notranslate"><span class="pre">math</span></code> module:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+
+<span class="n">math</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>128.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>The above piece of code uses a function.  It just happens that someone <em>else</em> defined the function for us.  And then we get to just <em>use</em> it.  This is another core use of functions - it allows us to easily use someone elses code.</p>
+</div>
+<div class="section" id="scoping-parameters-and-return">
+<h1>Scoping, Parameters, and Return<a class="headerlink" href="#scoping-parameters-and-return" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="scope">
+<h2>Scope<a class="headerlink" href="#scope" title="Permalink to this headline">¶</a></h2>
+<p>One of the important features of a function is it is self contained.  That means the only way for it to be <em>aware</em> of any variables is to pass them in explicitly.  That said, functions will be <em>aware</em> of the other functions in the program.  So to summarize, functions can’t see the other variables in a script, but can see the other functions in the script.</p>
+<p>So where and how does this <em>awareness</em> work?</p>
+<p>Consider the following example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">adder</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="mi">14</span>
+    <span class="k">return</span> <span class="n">y</span> <span class="o">+</span> <span class="n">x</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">12</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;return value of the function:&quot;</span><span class="p">,</span> <span class="n">adder</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;value of x:&quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>return value of the function: 26
+value of x: 7
+</pre></div>
+</div>
+</div>
+</div>
+<p>The above example shows us how function scoping works -</p>
+<p>The variable <code class="docutils literal notranslate"><span class="pre">y</span></code> is passed into the function, so it goes from the global scope of the program, to the local scope of the function <code class="docutils literal notranslate"><span class="pre">adder</span></code>.</p>
+<p>Next let’s look at the variable <code class="docutils literal notranslate"><span class="pre">x</span></code> - notice that we define it twice:</p>
+<ul class="simple">
+<li><p>once in the global scope</p></li>
+<li><p>once in the local scope of the function <code class="docutils literal notranslate"><span class="pre">adder</span></code></p></li>
+</ul>
+<p>In this second scope, local to the function, the value of x is used in the sum: <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">+</span> <span class="pre">y</span></code>, however in the global scope, the variable x is <em>never used</em>.</p>
+<p>That’s why the value of x <em>stays</em> <code class="docutils literal notranslate"><span class="pre">7</span></code> when we print it out in the end, in general, this implies that the scope local to the function can’t see and therefore cannot manipulate those in global scope.</p>
+</div>
+<div class="section" id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h2>
+<p>So far we’ve dealt with functions of one parameter, however as we saw from the general definition of functions, we can have ‘N’ many parameters, where ‘N’ is just some arbitrary number.  Here is an example of a function with two parameters:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">adder</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+
+<span class="n">w</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">z</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">adder</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">z</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>11
+</pre></div>
+</div>
+</div>
+</div>
+<p>As you can see, this function takes in two variabls from global scope instead of one, and then adds them.  Inside the scope of the function, these variables are called <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>.  And at the global scope, they are called <code class="docutils literal notranslate"><span class="pre">w</span></code> and <code class="docutils literal notranslate"><span class="pre">z</span></code>.</p>
+<p>Now let’s look at how we pass a list, instead of a variable:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sum_numbers</span><span class="p">(</span><span class="n">listing</span><span class="p">):</span>
+    <span class="n">summation</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">listing</span><span class="p">:</span>
+        <span class="n">summation</span> <span class="o">+=</span> <span class="n">elem</span>
+    <span class="k">return</span> <span class="n">summation</span>
+
+<span class="n">list_of</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">23</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">66</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">23</span><span class="p">,</span><span class="mi">41</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">sum_numbers</span><span class="p">(</span><span class="n">list_of</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>166
+</pre></div>
+</div>
+</div>
+</div>
+<p>As you can see - functions parameters work the same way variables do, with respect to syntax - to pass a list, we simply pass the name of the list and Python does the rest.</p>
+<p>However!  There is an important difference - Python passes list by reference, rather than by value.  This means rather than creating a <em>new</em> list and then passing that into the function, Python actually passes what’s called the <em>references</em> of the list.  We’ll get into this more in chapter 2, but basically, this means there are no scoping rules on lists.</p>
+<p>Let’s look at an example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mutate_list_elements</span><span class="p">(</span><span class="n">listing</span><span class="p">):</span>
+    <span class="n">listing</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">7</span>
+    
+<span class="n">listing</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
+<span class="n">mutate_list_elements</span><span class="p">(</span><span class="n">listing</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">listing</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[7, 2, 3, 4, 5]
+</pre></div>
+</div>
+</div>
+</div>
+<p>See!  Even though we never set the new list to the old list, or <em>even</em> returned the new list, the old list was <em>still</em> mutated.  Some people see this as a very bad thing, because it can lead to very subtle bugs, but the performance gain of passing by reference versus by value is just too attractive to ignore.  So we live with this consequence.</p>
+</div>
+<div class="section" id="returns">
+<h2>Returns<a class="headerlink" href="#returns" title="Permalink to this headline">¶</a></h2>
+<p>So we’ve talked naively about returns thus far, sort of <em>implicitly</em>.  Now we make explicit what was implicit - a return is <em>how</em> a function goes from local to global scope.  It’s what we <em>pass back up</em> to global scope.</p>
+<p>Since the above example sort of feels like a counter example to this, because of the weirdness of pass by reference, let’s look at a quick example to see how this works:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">adder</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+
+<span class="n">w</span> <span class="o">=</span> <span class="mi">9</span>
+<span class="n">z</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">summation</span> <span class="o">=</span> <span class="n">adder</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;the sum of </span><span class="si">{</span><span class="n">w</span><span class="si">}</span><span class="s2"> + </span><span class="si">{</span><span class="n">z</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">summation</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>the sum of 9 + 10 = 19
+</pre></div>
+</div>
+</div>
+</div>
+<p>So how this worked is - we took our variables from <em>global</em> scope and then stuck them in variables x and y, once we entered into the function - that’s because that’s the name of the parameters once we enter the function.  Then we do the addition, and the <em>return</em> is what comes back from the function.</p>
+<p>So when we do:</p>
+<p><code class="docutils literal notranslate"><span class="pre">summation</span> <span class="pre">=</span> <span class="pre">adder(w,</span> <span class="pre">z)</span></code></p>
+<p>The value of there result: x + y, aka the piece of code that gets <em>returned</em> is what ends up in the variable <code class="docutils literal notranslate"><span class="pre">summation</span></code>.</p>
+<p>So returns will <em>typically</em> be the last line of a function, because after that we <em>tend</em> to leave the local scope.  One of the neat things about Python though, is we can return <em>multiple</em> things at once!</p>
+<p>For instance:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">some_formula</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">x</span> <span class="o">/</span> <span class="n">y</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">z</span> <span class="o">-</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span>
+
+<span class="n">w</span> <span class="o">=</span> <span class="mi">9</span>
+<span class="n">q</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">result</span><span class="p">,</span> <span class="n">ratio</span> <span class="o">=</span> <span class="n">some_formula</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;the result of </span><span class="si">{</span><span class="n">w</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">q</span><span class="si">}</span><span class="s2"> for some formula = </span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s2"> with a ratio factor of </span><span class="si">{</span><span class="n">ratio</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>the result of 9, 10 for some formula = -0.09999999999999964 with a ratio factor of 0.9
+</pre></div>
+</div>
+</div>
+</div>
+<p>As you can see, this random formula returns two things:</p>
+<ul class="simple">
+<li><p>The result of the formula: <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">+</span> <span class="pre">z</span> <span class="pre">-</span> <span class="pre">y</span></code></p></li>
+<li><p>The implicit ratio used within the formula: <code class="docutils literal notranslate"><span class="pre">z</span> <span class="pre">=</span> <span class="pre">x</span> <span class="pre">/</span> <span class="pre">y</span></code></p></li>
+</ul>
+<p>This way we know <em>what</em> happened inside the function.</p>
+<p>Notice the general syntax:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">FUNCTION_NAME</span><span class="p">(</span><span class="n">PARAMETER1</span><span class="p">,</span> <span class="n">PARAMETER2</span><span class="p">,</span> <span class="o">..</span><span class="p">,</span> <span class="n">PARAMETERN</span><span class="p">):</span>
+    <span class="n">some</span> <span class="n">code</span> <span class="n">goes</span> <span class="n">here</span>
+    <span class="k">return</span> <span class="n">result_one</span><span class="p">,</span> <span class="n">result_two</span><span class="p">,</span> <span class="o">..</span><span class="p">,</span> <span class="n">result_n</span>
+</pre></div>
+</div>
+<p>This means we could return as many things as we wanted.  Notice also, that when we set the return equal we needed the same number of commas <em>between</em> variables:</p>
+<p><code class="docutils literal notranslate"><span class="pre">result,</span> <span class="pre">ratio</span> <span class="pre">=</span> <span class="pre">some_formula(w,</span> <span class="pre">q)</span></code></p>
+<p>Because our return was:</p>
+<p><code class="docutils literal notranslate"><span class="pre">return</span> <span class="pre">x</span> <span class="pre">+</span> <span class="pre">z</span> <span class="pre">-</span> <span class="pre">y,</span> <span class="pre">z</span></code></p>
+<p>That’s how we got our variables to match up.  We could also store all the results in something called a tuple.  Let’s look at an example and then we’ll dive a little deeper into tuples:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">identity</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
+
+<span class="n">w</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">z</span> <span class="o">=</span> <span class="mi">12</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">identity</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The result is:&quot;</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The result is: (10, 12)
+&lt;class &#39;tuple&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>as you can see, we pass back a tuple because of the use of the comma in the return.  If we check the type for a function with just one return, we’ll see that the type is just that of the returned variable:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">some_function</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">2</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">some_function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;the result is&quot;</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>the result is 9
+&lt;class &#39;int&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next let’s provide a little understanding of tools:</p>
+<p>A tuple is like a list, but you can’t make it bigger or smaller.</p>
+<p>This might make you think tuples don’t have much value, but they are great!  They just aren’t good for the <em>same</em> things as lists.</p>
+<p>Let’s look at an example of a tuple:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;things tuples can do:&quot;</span><span class="p">)</span>
+<span class="p">[</span><span class="n">elem</span> <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">if</span> <span class="s2">&quot;__&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">elem</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>things tuples can do:
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;count&#39;, &#39;index&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>As you can see, all you can do is get the index of a specific element:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">index_of_two</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;index of </span><span class="si">{</span><span class="n">t</span><span class="p">[</span><span class="n">index_of_two</span><span class="p">]</span><span class="si">}</span><span class="s2"> is </span><span class="si">{</span><span class="n">index_of_two</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>index of 2 is 1
+</pre></div>
+</div>
+</div>
+</div>
+<p>Or count the number of occurrences of a given element:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">count_2</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;number of times 2 appears in t: </span><span class="si">{</span><span class="n">count_2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>number of times 2 appears in t: 1
+</pre></div>
+</div>
+</div>
+</div>
+<p>As you saw above we can also index into tuples, like you can with lists.  And you can iterate over tuples:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">t</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+2
+3
+</pre></div>
+</div>
+</div>
+</div>
+<p>But that <em>is</em> the power of tuples.  Because you have guarantees on how many elements you can expect, and because your tuples are iterable like lists, that means you can do make assumptions about your data.  Which is why its used for the multiple value return amongst other things.  Admittedly, there aren’t infinite uses for tuples, but they have their uses.</p>
+<p>The biggest reason we use them for multiple value returns is once functions are defined, they should have <em>fixed</em> behavior.  That means if a function returns a certain amount of data, it should return it consistently.  This means you can think intelligently about your program.</p>
+</div>
+</div>
+<div class="section" id="functions-and-flow-of-control">
+<h1>Functions and Flow of Control<a class="headerlink" href="#functions-and-flow-of-control" title="Permalink to this headline">¶</a></h1>
+<p>In addition to being able to make use of simple statements inside of functions like addition or basic string manipulation, we can also do more advanced things like flow of control:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">is_even</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;is 7 even?&quot;</span><span class="p">,</span> <span class="n">is_even</span><span class="p">(</span><span class="mi">7</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>is 7 even? False
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice - because this function could take one of two paths - it has <em>two</em> return statements, one for each branch.  Of course we could rewrite this to have one return:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">is_even</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;is 7 even?&quot;</span><span class="p">,</span> <span class="n">is_even</span><span class="p">(</span><span class="mi">7</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>is 7 even? False
+</pre></div>
+</div>
+</div>
+</div>
+<p>But the first way just <em>feels</em> cleaner.  In addition to being able to bring flow of control into a function - we can take a complicated boolean statement, and <em>stick it into a function</em>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">complicated_boolean</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+    <span class="k">return</span> <span class="ow">not</span> <span class="p">((</span><span class="n">x</span> <span class="ow">and</span> <span class="n">y</span><span class="p">)</span> <span class="ow">or</span> <span class="n">z</span><span class="p">)</span> <span class="ow">and</span> <span class="n">w</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">y</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">z</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">w</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">if</span> <span class="n">complicated_boolean</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;got here&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;didn&#39;t get here&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>didn&#39;t get here
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next let’s see how a function can make our code cleaner:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">power</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
