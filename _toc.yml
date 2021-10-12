@@ -14,6 +14,8 @@ chapters:
     - file: 02/2/numpy.ipynb
     - file: 02/3/dictionaries_visualization_descriptive_statistics.ipynb
     - file: 02/4/functions.ipynb
+    - file: 02/5/string_processing_files_exceptions.ipynb
+    - file: 02/6/pandas.ipynb
 - file: 09/Randomness.ipynb
   sections:
   - file: 09/1/Conditional_Statements.ipynb
