@@ -596,7 +596,7 @@
 <h4>Generating One Value of the Statistic<a class="headerlink" href="#generating-one-value-of-the-statistic" title="Permalink to this headline">¶</a></h4>
 <p>First let’s figure out how to simulate one value of the statistic. For this, we have to sample 100 times at random from the population of eligible jurors and count the number of people from A we get.</p>
 <p>One way is to set up a table representing the eligible population and use <code class="docutils literal notranslate"><span class="pre">sample</span></code> as we did in the previous chapter. But there is also a quicker way, using a <code class="docutils literal notranslate"><span class="pre">datascience</span></code> function tailored for sampling at random from categorical distributions. We will use it several times in this chapter.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">sample_proportions</span></code> function in the <code class="docutils literal notranslate"><span class="pre">datascience</span></code> library takes two arguments:</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">sample_proportions</span></code> function takes two arguments:</p>
 <ul class="simple">
 <li><p>the sample size</p></li>
 <li><p>the distribution of the categories in the population, as a list or array of proportions that add up to 1</p></li>

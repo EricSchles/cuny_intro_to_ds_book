@@ -52,7 +52,7 @@ import pandas as pd
 # 
 # One way is to set up a table representing the eligible population and use `sample` as we did in the previous chapter. But there is also a quicker way, using a `datascience` function tailored for sampling at random from categorical distributions. We will use it several times in this chapter.
 # 
-# The `sample_proportions` function in the `datascience` library takes two arguments:
+# The `sample_proportions` function takes two arguments:
 # - the sample size
 # - the distribution of the categories in the population, as a list or array of proportions that add up to 1
 # 
