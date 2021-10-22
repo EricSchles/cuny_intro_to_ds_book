@@ -8,6 +8,6 @@ The following chapters:
 * Testing Hypotheses
 * Comparing Two Samples
 * Estimation
-
-[https://inferentialthinking.com/chapters/intro.html](https://inferentialthinking.com/chapters/intro.html)
 * Why The Mean Matters
+
+Are from [https://inferentialthinking.com/chapters/intro.html](https://inferentialthinking.com/chapters/intro.html)
